@@ -5,8 +5,10 @@ import {
   Inter,
   JetBrains_Mono,
 } from "next/font/google";
-
+import { ThemeProvider } from "@/components/providers/theme-provider";
 import "./globals.css";
+import Navbar from "@/components/layout/navbar";
+import Footer from "@/components/layout/footer";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -115,6 +117,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`
         ${geist.variable}
         ${geistMono.variable}
@@ -124,8 +127,12 @@ export default function RootLayout({
         antialiased
       `}
     >
-      <body className="min-h-full flex flex-col font-sans">
-        {children}
+      <body>
+        <ThemeProvider>
+          <Navbar/>
+          {children}
+          <Footer/>
+          </ThemeProvider>
       </body>
     </html>
   );
