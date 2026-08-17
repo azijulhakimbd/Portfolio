@@ -132,7 +132,7 @@ export default function NotFound() {
           </Link>
 
           <Link
-            href="/#projects"
+            href="/projects"
             className="
               inline-flex h-11 items-center gap-2
               rounded-xl border border-border/70
