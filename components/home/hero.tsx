@@ -74,7 +74,7 @@ export default function Hero() {
           {/* CTA */}
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Link
-              href="#projects"
+              href="/projects"
               className="group inline-flex h-11 items-center gap-2 rounded-md bg-emerald-500 px-6 font-mono text-sm font-medium text-black transition-all hover:bg-emerald-400 hover:shadow-[0_0_30px_rgba(52,211,153,0.2)]"
             >
               View my work
@@ -85,7 +85,7 @@ export default function Hero() {
             </Link>
 
             <Link
-              href="#contact"
+              href="/contact"
               className="inline-flex h-11 items-center rounded-md border border-border bg-background/50 px-6 font-mono text-sm font-medium backdrop-blur transition-colors hover:border-emerald-500/40 hover:bg-emerald-500/5"
             >
               Let&apos;s connect
