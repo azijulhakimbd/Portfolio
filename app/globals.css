@@ -5,40 +5,107 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* =========================================================
+     CORE
+     ========================================================= */
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-mono);
-  --font-heading: var(--font-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+
+  /* =========================================================
+     BRAND
+     ========================================================= */
+
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+
+  /* =========================================================
+     AI / ENGINEERING COLORS
+     ========================================================= */
+
+  --color-ai: var(--ai);
+  --color-ai-foreground: var(--ai-foreground);
+
+  --color-tech: var(--tech);
+  --color-tech-foreground: var(--tech-foreground);
+
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+
+  --color-creative: var(--creative);
+  --color-creative-foreground: var(--creative-foreground);
+
+  --color-project: var(--project);
+  --color-project-foreground: var(--project-foreground);
+
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  --color-rose: var(--rose);
+  --color-rose-foreground: var(--rose-foreground);
+
+  /* =========================================================
+     SHADCN SEMANTIC COLORS
+     ========================================================= */
+
   --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* =========================================================
+     CHART COLORS
+     ========================================================= */
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* =========================================================
+     SIDEBAR
+     ========================================================= */
+
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* =========================================================
+     RADIUS
+     ========================================================= */
+
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -48,83 +115,409 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* =========================================================
+     BASE
+     ========================================================= */
+
+  --background: oklch(0.985 0.004 255);
+  --foreground: oklch(0.18 0.025 260);
+
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
+  --card-foreground: oklch(0.18 0.025 260);
+
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --popover-foreground: oklch(0.18 0.025 260);
+
+  /* =========================================================
+     PRIMARY / BRAND
+     ========================================================= */
+
+  --primary: oklch(0.58 0.24 275);
+  --primary-foreground: oklch(0.99 0.005 255);
+
+  --brand: oklch(0.58 0.24 275);
+  --brand-foreground: oklch(0.99 0.005 255);
+
+  /* =========================================================
+     SECONDARY
+     ========================================================= */
+
+  --secondary: oklch(0.95 0.025 275);
+  --secondary-foreground: oklch(0.28 0.08 275);
+
+  --muted: oklch(0.955 0.008 255);
+  --muted-foreground: oklch(0.52 0.035 260);
+
+  --accent: oklch(0.94 0.045 205);
+  --accent-foreground: oklch(0.25 0.06 220);
+
+  /* =========================================================
+     AI COLOR
+     Cyan / Intelligence / AI Lab
+     ========================================================= */
+
+  --ai: oklch(0.72 0.16 205);
+  --ai-foreground: oklch(0.18 0.04 220);
+
+  /* =========================================================
+     TECH COLOR
+     Blue / Frontend / Engineering
+     ========================================================= */
+
+  --tech: oklch(0.62 0.2 250);
+  --tech-foreground: oklch(0.99 0.005 255);
+
+  /* =========================================================
+     SUCCESS
+     Emerald / Production / Available
+     ========================================================= */
+
+  --success: oklch(0.68 0.18 155);
+  --success-foreground: oklch(0.16 0.04 155);
+
+  /* =========================================================
+     WARNING
+     Amber / Experiments / Beta
+     ========================================================= */
+
+  --warning: oklch(0.76 0.17 80);
+  --warning-foreground: oklch(0.22 0.06 80);
+
+  /* =========================================================
+     CREATIVE
+     Pink / Generative AI / Creative Projects
+     ========================================================= */
+
+  --creative: oklch(0.68 0.22 325);
+  --creative-foreground: oklch(0.99 0.005 325);
+
+  /* =========================================================
+     PROJECT
+     Orange / Featured Projects
+     ========================================================= */
+
+  --project: oklch(0.68 0.2 45);
+  --project-foreground: oklch(0.99 0.005 45);
+
+  /* =========================================================
+     INFO
+     ========================================================= */
+
+  --info: oklch(0.68 0.17 230);
+  --info-foreground: oklch(0.99 0.005 230);
+
+  /* =========================================================
+     ROSE
+     Errors / Important states
+     ========================================================= */
+
+  --rose: oklch(0.63 0.23 15);
+  --rose-foreground: oklch(0.99 0.005 15);
+
+  /* =========================================================
+     DESTRUCTIVE
+     ========================================================= */
+
+  --destructive: oklch(0.62 0.23 25);
+
+  /* =========================================================
+     BORDERS / INPUT / FOCUS
+     ========================================================= */
+
+  --border: oklch(0.91 0.015 255);
+  --input: oklch(0.91 0.015 255);
+  --ring: oklch(0.58 0.24 275);
+
+  /* =========================================================
+     CHARTS
+     ========================================================= */
+
+  --chart-1: oklch(0.58 0.24 275);
+  --chart-2: oklch(0.72 0.16 205);
+  --chart-3: oklch(0.68 0.22 325);
+  --chart-4: oklch(0.68 0.18 155);
+  --chart-5: oklch(0.76 0.17 80);
+
+  --radius: 0.75rem;
+
+  /* =========================================================
+     SIDEBAR
+     ========================================================= */
+
+  --sidebar: oklch(0.98 0.006 255);
+  --sidebar-foreground: oklch(0.2 0.025 260);
+
+  --sidebar-primary: oklch(0.58 0.24 275);
+  --sidebar-primary-foreground: oklch(0.99 0.005 255);
+
+  --sidebar-accent: oklch(0.94 0.025 275);
+  --sidebar-accent-foreground: oklch(0.28 0.08 275);
+
+  --sidebar-border: oklch(0.91 0.015 255);
+  --sidebar-ring: oklch(0.58 0.24 275);
 }
 
+/* =========================================================
+   DARK THEME
+   ========================================================= */
+
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* =========================================================
+     BASE
+     ========================================================= */
+
+  --background: oklch(0.105 0.025 260);
+  --foreground: oklch(0.96 0.01 255);
+
+  --card: oklch(0.145 0.03 260);
+  --card-foreground: oklch(0.96 0.01 255);
+
+  --popover: oklch(0.145 0.03 260);
+  --popover-foreground: oklch(0.96 0.01 255);
+
+  /* =========================================================
+     PRIMARY / BRAND
+     ========================================================= */
+
+  --primary: oklch(0.68 0.22 275);
+  --primary-foreground: oklch(0.12 0.025 260);
+
+  --brand: oklch(0.68 0.22 275);
+  --brand-foreground: oklch(0.12 0.025 260);
+
+  /* =========================================================
+     SECONDARY
+     ========================================================= */
+
+  --secondary: oklch(0.205 0.045 270);
+  --secondary-foreground: oklch(0.92 0.025 275);
+
+  --muted: oklch(0.18 0.025 260);
+  --muted-foreground: oklch(0.68 0.025 255);
+
+  --accent: oklch(0.23 0.07 210);
+  --accent-foreground: oklch(0.86 0.1 205);
+
+  /* =========================================================
+     AI
+     ========================================================= */
+
+  --ai: oklch(0.74 0.15 205);
+  --ai-foreground: oklch(0.12 0.035 220);
+
+  /* =========================================================
+     TECH
+     ========================================================= */
+
+  --tech: oklch(0.68 0.2 250);
+  --tech-foreground: oklch(0.12 0.025 260);
+
+  /* =========================================================
+     SUCCESS
+     ========================================================= */
+
+  --success: oklch(0.72 0.17 155);
+  --success-foreground: oklch(0.12 0.035 155);
+
+  /* =========================================================
+     WARNING
+     ========================================================= */
+
+  --warning: oklch(0.8 0.16 80);
+  --warning-foreground: oklch(0.15 0.045 80);
+
+  /* =========================================================
+     CREATIVE
+     ========================================================= */
+
+  --creative: oklch(0.73 0.21 325);
+  --creative-foreground: oklch(0.12 0.025 325);
+
+  /* =========================================================
+     PROJECT
+     ========================================================= */
+
+  --project: oklch(0.72 0.19 45);
+  --project-foreground: oklch(0.12 0.03 45);
+
+  /* =========================================================
+     INFO
+     ========================================================= */
+
+  --info: oklch(0.73 0.16 230);
+  --info-foreground: oklch(0.12 0.03 230);
+
+  /* =========================================================
+     ROSE
+     ========================================================= */
+
+  --rose: oklch(0.7 0.2 15);
+  --rose-foreground: oklch(0.12 0.025 15);
+
+  /* =========================================================
+     DESTRUCTIVE
+     ========================================================= */
+
+  --destructive: oklch(0.68 0.19 25);
+
+  /* =========================================================
+     BORDERS / INPUT / FOCUS
+     ========================================================= */
+
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.68 0.22 275);
+
+  /* =========================================================
+     CHARTS
+     ========================================================= */
+
+  --chart-1: oklch(0.68 0.22 275);
+  --chart-2: oklch(0.74 0.15 205);
+  --chart-3: oklch(0.73 0.21 325);
+  --chart-4: oklch(0.72 0.17 155);
+  --chart-5: oklch(0.8 0.16 80);
+
+  /* =========================================================
+     SIDEBAR
+     ========================================================= */
+
+  --sidebar: oklch(0.125 0.028 260);
+  --sidebar-foreground: oklch(0.95 0.01 255);
+
+  --sidebar-primary: oklch(0.68 0.22 275);
+  --sidebar-primary-foreground: oklch(0.12 0.025 260);
+
+  --sidebar-accent: oklch(0.205 0.045 270);
+  --sidebar-accent-foreground: oklch(0.92 0.025 275);
+
+  --sidebar-border: oklch(1 0 0 / 9%);
+  --sidebar-ring: oklch(0.68 0.22 275);
 }
+
+/* =========================================================
+   BASE STYLES
+   ========================================================= */
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+
   html {
+    @apply scroll-smooth font-sans;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading tracking-tight;
+  }
+
+  code,
+  pre,
+  kbd {
     @apply font-mono;
+  }
+
+  ::selection {
+    background: color-mix(in oklch, var(--primary) 30%, transparent);
+    color: var(--foreground);
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-ring;
+  }
+}
+
+/* =========================================================
+   PORTFOLIO UTILITIES
+   ========================================================= */
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--brand),
+      var(--ai),
+      var(--creative)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-ai {
+    background: linear-gradient(
+      135deg,
+      var(--ai),
+      var(--tech),
+      var(--brand)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  .border-gradient {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(var(--card), var(--card)) padding-box,
+      linear-gradient(
+        135deg,
+        var(--brand),
+        var(--ai),
+        var(--creative)
+      ) border-box;
+  }
+
+  .glow-brand {
+    box-shadow:
+      0 0 30px color-mix(in oklch, var(--brand) 20%, transparent);
+  }
+
+  .glow-ai {
+    box-shadow:
+      0 0 30px color-mix(in oklch, var(--ai) 20%, transparent);
+  }
+
+  .glow-creative {
+    box-shadow:
+      0 0 30px color-mix(in oklch, var(--creative) 20%, transparent);
+  }
+
+  .grid-background {
+    background-image:
+      linear-gradient(
+        to right,
+        color-mix(in oklch, var(--foreground) 5%, transparent) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        color-mix(in oklch, var(--foreground) 5%, transparent) 1px,
+        transparent 1px
+      );
+    background-size: 32px 32px;
+  }
+
+  .dot-background {
+    background-image: radial-gradient(
+      color-mix(in oklch, var(--foreground) 12%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 20px 20px;
   }
 }
