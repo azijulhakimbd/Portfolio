@@ -1,96 +1,62 @@
-import Link from "next/link";
-import { ArrowLeft, FlaskConical } from "lucide-react";
+import AILabDetailsClient from "../ai-lab-details-client";
 
-type AILabPageProps = {
+
+type AILabDetailsPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-const experiments: Record<
-  string,
-  {
-    title: string;
-    category: string;
-    description: string;
-    concepts: string[];
-  }
-> = {
+const experiments = {
   "ai-agent": {
     title: "AI Agent",
     category: "Agents",
     description:
-      "An experiment exploring tool calling, reasoning workflows, and AI agents.",
+      "An experiment exploring tool calling, reasoning workflows, and AI agents that can interact with external capabilities.",
     concepts: ["LLMs", "Tool Calling", "AI SDK", "Agent Workflows"],
+    status: "Researching",
+    icon: "brain",
   },
+
   "rag-search": {
     title: "RAG Search",
     category: "RAG",
     description:
-      "An experiment exploring retrieval-augmented generation for contextual responses.",
+      "An experiment exploring retrieval-augmented generation for contextual responses using retrieval and language models.",
     concepts: ["Embeddings", "Retrieval", "Context", "LLMs"],
+    status: "Experimenting",
+    icon: "sparkles",
   },
+
   "ai-ui": {
     title: "AI UI",
     category: "Generative UI",
     description:
-      "An experiment focused on designing useful interfaces around AI interactions.",
+      "An experiment focused on designing useful interfaces around AI interactions, streaming responses, and generative experiences.",
     concepts: ["Streaming", "AI UX", "Generative UI", "React"],
+    status: "Exploring",
+    icon: "flask",
   },
-};
+} as const;
 
 export default async function AILabDetailsPage({
   params,
-}: AILabPageProps) {
+}: AILabDetailsPageProps) {
   const { slug } = await params;
-  const experiment = experiments[slug];
+
+  const experiment = experiments[slug as keyof typeof experiments];
 
   if (!experiment) {
     return (
-      <main className="mx-auto max-w-4xl px-6 py-20">
-        <h1 className="text-4xl font-bold">Experiment not found</h1>
+      <main className="flex min-h-screen items-center justify-center px-6">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold">Experiment not found</h1>
+
+          <p className="mt-4 text-muted-foreground">
+            The AI experiment you are looking for does not exist.
+          </p>
+        </div>
       </main>
     );
   }
 
-  return (
-    <main className="mx-auto max-w-5xl px-6 py-20 lg:px-8">
-      <Link
-        href="/ai-lab"
-        className="inline-flex items-center gap-2 text-sm text-muted-foreground"
-      >
-        <ArrowLeft className="size-4" />
-        Back to AI Lab
-      </Link>
-
-      <header className="mt-12">
-        <div className="inline-flex rounded-xl border p-3">
-          <FlaskConical className="size-7 text-primary" />
-        </div>
-
-        <p className="mt-6 text-sm uppercase tracking-widest text-muted-foreground">
-          {experiment.category}
-        </p>
-
-        <h1 className="mt-3 text-5xl font-bold">{experiment.title}</h1>
-
-        <p className="mt-6 max-w-2xl text-xl leading-8 text-muted-foreground">
-          {experiment.description}
-        </p>
-      </header>
-
-      <section className="mt-16">
-        <h2 className="text-2xl font-semibold">Concepts explored</h2>
-
-        <div className="mt-6 flex flex-wrap gap-3">
-          {experiment.concepts.map((concept) => (
-            <span
-              key={concept}
-              className="rounded-full border px-4 py-2 text-sm"
-            >
-              {concept}
-            </span>
-          ))}
-        </div>
-      </section>
-    </main>
-  );
+  return <AILabDetailsClient experiment={experiment} />;
 }

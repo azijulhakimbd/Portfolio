@@ -1,27 +1,36 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import {
-  Brain,
-  Code2,
-  Database,
-  GitBranch,
-  Sparkles,
-  Wrench,
-} from "lucide-react";
-
-import {
-  FaCss3Alt,
+  FaBrain,
+  FaCode,
   FaDatabase,
   FaGitAlt,
   FaGithub,
-  FaHtml5,
-  FaJs,
   FaNodeJs,
+  FaPaintBrush,
   FaReact,
   FaRobot,
   FaTools,
+  FaWrench,
+  FaStar,
 } from "react-icons/fa";
+
+import {
+  SiCss,
+  SiExpress,
+  SiHtml5,
+  SiJavascript,
+  SiNextdotjs,
+  SiPostgresql,
+  SiPrisma,
+  SiRadixui,
+  SiTailwindcss,
+  SiTypescript,
+  SiVercel,
+ 
+} from "react-icons/si";
+import { VscVscodeInsiders } from "react-icons/vsc";
 
 import type { IconType } from "react-icons";
 
@@ -42,23 +51,23 @@ const skillGroups: SkillGroup[] = [
     title: "Frontend",
     description:
       "Building modern, responsive, and scalable user interfaces.",
-    icon: Code2,
+    icon: FaCode,
     skills: [
       {
         name: "HTML",
-        icon: FaHtml5,
+        icon: SiHtml5,
       },
       {
         name: "CSS",
-        icon: FaCss3Alt,
+        icon: SiCss,
       },
       {
         name: "JavaScript",
-        icon: FaJs,
+        icon: SiJavascript,
       },
       {
         name: "TypeScript",
-        icon: FaCodeIcon,
+        icon: SiTypescript,
       },
       {
         name: "React",
@@ -66,7 +75,7 @@ const skillGroups: SkillGroup[] = [
       },
       {
         name: "Next.js",
-        icon: FaCodeIcon,
+        icon: SiNextdotjs,
       },
     ],
   },
@@ -75,11 +84,11 @@ const skillGroups: SkillGroup[] = [
     title: "UI & Styling",
     description:
       "Creating polished interfaces, design systems, and interactive experiences.",
-    icon: Sparkles,
+    icon: FaPaintBrush,
     skills: [
       {
         name: "Tailwind CSS",
-        icon: FaCss3Alt,
+        icon: SiTailwindcss,
       },
       {
         name: "shadcn/ui",
@@ -87,7 +96,7 @@ const skillGroups: SkillGroup[] = [
       },
       {
         name: "Radix UI",
-        icon: FaTools,
+        icon: SiRadixui,
       },
       {
         name: "Framer Motion",
@@ -100,7 +109,7 @@ const skillGroups: SkillGroup[] = [
     title: "AI Engineering",
     description:
       "Building intelligent applications around LLMs, agents, and AI workflows.",
-    icon: Brain,
+    icon: FaBrain,
     skills: [
       {
         name: "LLMs",
@@ -128,7 +137,7 @@ const skillGroups: SkillGroup[] = [
       },
       {
         name: "Tool Calling",
-        icon: Wrench,
+        icon: FaWrench,
       },
     ],
   },
@@ -137,7 +146,7 @@ const skillGroups: SkillGroup[] = [
     title: "Backend",
     description:
       "Developing APIs, databases, and reliable backend architectures.",
-    icon: Database,
+    icon: FaDatabase,
     skills: [
       {
         name: "Node.js",
@@ -145,7 +154,7 @@ const skillGroups: SkillGroup[] = [
       },
       {
         name: "Express.js",
-        icon: FaCodeIcon,
+        icon: SiExpress,
       },
       {
         name: "MongoDB",
@@ -153,11 +162,11 @@ const skillGroups: SkillGroup[] = [
       },
       {
         name: "PostgreSQL",
-        icon: FaDatabase,
+        icon: SiPostgresql,
       },
       {
         name: "Prisma",
-        icon: FaDatabase,
+        icon: SiPrisma,
       },
     ],
   },
@@ -166,7 +175,7 @@ const skillGroups: SkillGroup[] = [
     title: "Tools",
     description:
       "Tools and platforms I use throughout my development workflow.",
-    icon: GitBranch,
+    icon: FaGitAlt,
     skills: [
       {
         name: "Git",
@@ -178,11 +187,11 @@ const skillGroups: SkillGroup[] = [
       },
       {
         name: "VS Code",
-        icon: FaCodeIcon,
+        icon: VscVscodeInsiders,
       },
       {
         name: "Cursor",
-        icon: FaCodeIcon,
+        icon: FaTools,
       },
       {
         name: "Claude Code",
@@ -190,21 +199,13 @@ const skillGroups: SkillGroup[] = [
       },
       {
         name: "Vercel",
-        icon: FaCodeIcon,
+        icon: SiVercel,
       },
     ],
   },
 ];
 
-/*
- * Generic code icon for technologies that don't have
- * a reliable Font Awesome icon in every react-icons version.
- */
-function FaCodeIcon(props: React.ComponentProps<IconType>) {
-  return <FaTools {...props} />;
-}
-
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -213,7 +214,7 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 30,
@@ -231,20 +232,14 @@ const cardVariants = {
 export default function SkillsPage() {
   return (
     <main className="relative min-h-screen overflow-hidden">
-      {/* =====================================================
-          AI BACKGROUND
-      ====================================================== */}
+      {/* AI Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {/* Main glow */}
         <div className="absolute left-1/2 top-[-180px] h-[500px] w-[750px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]" />
 
-        {/* Blue glow */}
         <div className="absolute -left-40 top-[35%] h-[400px] w-[400px] rounded-full bg-blue-500/10 blur-[120px]" />
 
-        {/* Purple glow */}
         <div className="absolute -right-40 bottom-[10%] h-[450px] w-[450px] rounded-full bg-purple-500/10 blur-[120px]" />
 
-        {/* Grid */}
         <div
           className="absolute inset-0 opacity-[0.035]"
           style={{
@@ -256,25 +251,15 @@ export default function SkillsPage() {
       </div>
 
       <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
-        {/* =====================================================
-            HEADER
-        ====================================================== */}
+        {/* Header */}
         <motion.header
-          initial={{
-            opacity: 0,
-            y: 25,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.6,
-          }}
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
           className="max-w-3xl"
         >
           <div className="inline-flex items-center gap-2 rounded-full border bg-background/70 px-4 py-2 text-sm text-muted-foreground shadow-sm backdrop-blur-md">
-            <Sparkles className="size-4 text-primary" />
+            <FaStar className="size-4 text-primary" />
 
             <span>Toolkit</span>
 
@@ -293,9 +278,7 @@ export default function SkillsPage() {
           </p>
         </motion.header>
 
-        {/* =====================================================
-            SKILL GRID
-        ====================================================== */}
+        {/* Skill Grid */}
         <motion.section
           variants={containerVariants}
           initial="hidden"
@@ -309,38 +292,29 @@ export default function SkillsPage() {
               <motion.article
                 key={group.title}
                 variants={cardVariants}
-                whileHover={{
-                  y: -8,
-                }}
-                transition={{
-                  duration: 0.2,
-                }}
+                whileHover={{ y: -8 }}
                 className="group relative overflow-hidden rounded-3xl border bg-background/60 p-7 shadow-sm backdrop-blur-md transition-shadow duration-300 hover:shadow-2xl"
               >
-                {/* Hover glow */}
+                {/* Hover Glow */}
                 <div className="pointer-events-none absolute -right-20 -top-20 size-48 rounded-full bg-primary/10 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
                 <div className="relative">
-                  {/* Category icon */}
+                  {/* Category Icon */}
                   <motion.div
                     whileHover={{
                       rotate: 8,
                       scale: 1.08,
                     }}
-                    transition={{
-                      duration: 0.2,
-                    }}
+                    transition={{ duration: 0.2 }}
                     className="flex size-12 items-center justify-center rounded-xl bg-primary/10"
                   >
                     <GroupIcon className="size-6 text-primary" />
                   </motion.div>
 
-                  {/* Category */}
                   <h2 className="mt-6 text-xl font-semibold tracking-tight">
                     {group.title}
                   </h2>
 
-                  {/* Description */}
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">
                     {group.description}
                   </p>
@@ -384,32 +358,20 @@ export default function SkillsPage() {
           })}
         </motion.section>
 
-        {/* =====================================================
-            AI FOCUS
-        ====================================================== */}
+        {/* AI Focus */}
         <motion.section
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{
             once: true,
             amount: 0.2,
           }}
-          transition={{
-            duration: 0.7,
-          }}
+          transition={{ duration: 0.7 }}
           className="relative mt-24 overflow-hidden rounded-3xl border bg-background/60 p-8 backdrop-blur-md sm:p-12"
         >
-          {/* Glow */}
           <div className="pointer-events-none absolute -right-20 -top-20 size-64 rounded-full bg-primary/10 blur-[100px]" />
 
           <div className="relative grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:items-center">
-            {/* Left */}
             <div>
               <motion.div
                 animate={{
@@ -422,7 +384,7 @@ export default function SkillsPage() {
                 }}
                 className="flex size-12 items-center justify-center rounded-xl bg-primary/10"
               >
-                <Brain className="size-6 text-primary" />
+                <FaBrain className="size-6 text-primary" />
               </motion.div>
 
               <p className="mt-6 text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
@@ -434,7 +396,6 @@ export default function SkillsPage() {
               </h2>
             </div>
 
-            {/* Right */}
             <div>
               <p className="text-lg leading-8 text-muted-foreground">
                 My current focus is the intersection of{" "}
@@ -467,31 +428,21 @@ export default function SkillsPage() {
           </div>
         </motion.section>
 
-        {/* =====================================================
-            BOTTOM STATEMENT
-        ====================================================== */}
+        {/* Bottom Statement */}
         <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{
-            opacity: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.6,
-          }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="mt-16 flex items-center justify-center gap-3 text-sm text-muted-foreground"
         >
           <span className="h-px w-12 bg-border" />
 
-          <Sparkles className="size-4 text-primary" />
+          <FaStar className="size-4 text-primary" />
 
           <span>Always learning. Always building.</span>
 
-          <Sparkles className="size-4 text-primary" />
+          <FaStar className="size-4 text-primary" />
 
           <span className="h-px w-12 bg-border" />
         </motion.div>
