@@ -1,7 +1,6 @@
-
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import {
   ArrowUpRight,
   Brain,
@@ -51,7 +50,7 @@ const stats = [
   },
 ];
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: {
@@ -60,7 +59,7 @@ const containerVariants = {
   },
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 25,
@@ -70,7 +69,7 @@ const itemVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: "easeOut",
+      ease: "easeOut" as const,
     },
   },
 };
@@ -80,14 +79,12 @@ export default function AboutPage() {
     <main className="relative min-h-screen overflow-hidden">
       {/* Background */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {/* Ambient gradients */}
         <div className="absolute left-1/2 top-[-180px] h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]" />
 
         <div className="absolute -left-40 top-[45%] h-[400px] w-[400px] rounded-full bg-blue-500/10 blur-[120px]" />
 
         <div className="absolute -right-40 top-[65%] h-[450px] w-[450px] rounded-full bg-purple-500/10 blur-[120px]" />
 
-        {/* Grid */}
         <div
           className="absolute inset-0 opacity-[0.035]"
           style={{
@@ -200,12 +197,8 @@ export default function AboutPage() {
               key={stat.label}
               variants={itemVariants}
               className={`relative p-6 sm:p-8 ${
-                index !== 0
-                  ? "border-t md:border-l md:border-t-0"
-                  : ""
-              } ${
-                index === 2 ? "border-l" : ""
-              }`}
+                index > 0 ? "border-l" : ""
+              } ${index >= 2 ? "border-t md:border-t-0" : ""}`}
             >
               <p className="text-2xl font-bold tracking-tight sm:text-3xl">
                 {stat.value}
@@ -300,8 +293,7 @@ export default function AboutPage() {
                   }}
                   className="group relative overflow-hidden rounded-2xl border bg-background/60 p-7 shadow-sm backdrop-blur-md transition-shadow hover:shadow-xl"
                 >
-                  {/* Card glow */}
-                  <div className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-primary/10 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 
                   <div className="relative">
                     <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10">

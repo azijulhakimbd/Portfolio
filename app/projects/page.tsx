@@ -1,4 +1,3 @@
-
 "use client";
 
 import Link from "next/link";
@@ -19,6 +18,13 @@ import {
 } from "react-icons/si";
 
 import type { IconType } from "react-icons";
+
+import {
+  containerVariants,
+  cardVariants,
+  fadeUpVariants,
+  scaleInVariants,
+} from "@/lib/animations";
 
 const technologyIcons: Record<string, IconType> = {
   "Next.js": SiNextdotjs,
@@ -68,30 +74,6 @@ const projects = [
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
-
 export default function ProjectsPage() {
   return (
     <main className="relative min-h-screen overflow-hidden">
@@ -124,17 +106,9 @@ export default function ProjectsPage() {
             HEADER
         ======================================== */}
         <motion.header
-          initial={{
-            opacity: 0,
-            y: 25,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.6,
-          }}
+          variants={fadeUpVariants}
+          initial="hidden"
+          animate="visible"
           className="max-w-3xl"
         >
           {/* Badge */}
@@ -166,7 +140,11 @@ export default function ProjectsPage() {
         <motion.section
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.15,
+          }}
           className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
         >
           {projects.map((project, index) => (
@@ -176,15 +154,12 @@ export default function ProjectsPage() {
               whileHover={{
                 y: -8,
               }}
-              transition={{
-                duration: 0.2,
-              }}
               className="group relative flex min-h-[440px] flex-col overflow-hidden rounded-3xl border bg-background/60 p-7 shadow-sm backdrop-blur-md transition-shadow duration-300 hover:shadow-2xl"
             >
               {/* ========================================
                   HOVER GLOW
               ======================================== */}
-              <div className="pointer-events-none absolute -right-20 -top-20 size-48 rounded-full bg-primary/10 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="pointer-events-none absolute -right-20 -top-20 size-48 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 
               {/* ========================================
                   CARD HEADER
@@ -200,6 +175,9 @@ export default function ProjectsPage() {
                   whileHover={{
                     rotate: 8,
                     scale: 1.08,
+                  }}
+                  transition={{
+                    duration: 0.2,
                   }}
                   className="flex size-10 items-center justify-center rounded-xl border bg-background/70"
                 >
@@ -269,20 +247,18 @@ export default function ProjectsPage() {
 
                 {/* GitHub */}
                 {project.github !== "#" ? (
-                  <Link
+                  <a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     <FaGithub className="size-4" />
-
                     GitHub
-                  </Link>
+                  </a>
                 ) : (
                   <span className="inline-flex items-center gap-2 px-3 py-2.5 text-sm text-muted-foreground/50">
                     <FaGithub className="size-4" />
-
                     Coming soon
                   </span>
                 )}
@@ -295,20 +271,12 @@ export default function ProjectsPage() {
             BOTTOM CTA
         ======================================== */}
         <motion.section
-          initial={{
-            opacity: 0,
-            y: 25,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
+          variants={scaleInVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{
             once: true,
             amount: 0.2,
-          }}
-          transition={{
-            duration: 0.6,
           }}
           className="relative mt-24 overflow-hidden rounded-3xl border bg-background/60 p-8 text-center backdrop-blur-md sm:p-12"
         >

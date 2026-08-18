@@ -10,6 +10,13 @@ import {
   Sparkles,
 } from "lucide-react";
 
+import {
+  containerVariants,
+  fadeUpVariants,
+  fadeLeftVariants,
+  fadeRightVariants,
+} from "@/lib/animations";
+
 const experiences = [
   {
     period: "2026 — Present",
@@ -44,30 +51,6 @@ const experiences = [
   },
 ];
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.18,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: {
-    opacity: 0,
-    x: -30,
-  },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
-};
-
 export default function ExperiencePage() {
   return (
     <main className="relative min-h-screen overflow-hidden">
@@ -75,16 +58,12 @@ export default function ExperiencePage() {
           AI BACKGROUND
       ====================================================== */}
       <div className="pointer-events-none absolute inset-0 -z-10">
-        {/* Main glow */}
         <div className="absolute left-1/2 top-[-180px] h-[500px] w-[750px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]" />
 
-        {/* Left glow */}
         <div className="absolute -left-40 top-[35%] h-[400px] w-[400px] rounded-full bg-blue-500/10 blur-[120px]" />
 
-        {/* Right glow */}
         <div className="absolute -right-40 bottom-[10%] h-[450px] w-[450px] rounded-full bg-purple-500/10 blur-[120px]" />
 
-        {/* Grid */}
         <div
           className="absolute inset-0 opacity-[0.035]"
           style={{
@@ -100,20 +79,11 @@ export default function ExperiencePage() {
             HEADER
         ====================================================== */}
         <motion.header
-          initial={{
-            opacity: 0,
-            y: 25,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.6,
-          }}
+          variants={fadeUpVariants}
+          initial="hidden"
+          animate="visible"
           className="max-w-3xl"
         >
-          {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full border bg-background/70 px-4 py-2 text-sm text-muted-foreground shadow-sm backdrop-blur-md">
             <BriefcaseBusiness className="size-4 text-primary" />
 
@@ -140,7 +110,11 @@ export default function ExperiencePage() {
         <motion.section
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.1,
+          }}
           className="relative mt-20"
         >
           {/* Timeline line */}
@@ -148,12 +122,15 @@ export default function ExperiencePage() {
             initial={{
               scaleY: 0,
             }}
-            animate={{
+            whileInView={{
               scaleY: 1,
+            }}
+            viewport={{
+              once: true,
             }}
             transition={{
               duration: 1.2,
-              ease: "easeInOut",
+              ease: "easeInOut" as const,
             }}
             style={{
               transformOrigin: "top",
@@ -165,7 +142,7 @@ export default function ExperiencePage() {
             {experiences.map((experience, index) => (
               <motion.article
                 key={`${experience.company}-${experience.period}`}
-                variants={itemVariants}
+                variants={fadeLeftVariants}
                 className="relative pl-10 sm:pl-12"
               >
                 {/* Timeline point */}
@@ -179,7 +156,7 @@ export default function ExperiencePage() {
                       transition={{
                         duration: 2,
                         repeat: Infinity,
-                        ease: "easeOut",
+                        ease: "easeOut" as const,
                       }}
                       className="absolute size-7 rounded-full bg-primary"
                     />
@@ -201,7 +178,7 @@ export default function ExperiencePage() {
                   className="group relative overflow-hidden rounded-3xl border bg-background/60 p-7 shadow-sm backdrop-blur-md transition-shadow duration-300 hover:shadow-2xl sm:p-8"
                 >
                   {/* Hover glow */}
-                  <div className="pointer-events-none absolute -right-24 -top-24 size-64 rounded-full bg-primary/10 blur-[90px] opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="pointer-events-none absolute -right-24 -top-24 size-64 rounded-full bg-primary/10 opacity-0 blur-[90px] transition-opacity duration-500 group-hover:opacity-100" />
 
                   <div className="relative">
                     {/* Top row */}
@@ -229,7 +206,7 @@ export default function ExperiencePage() {
 
                       {/* Number */}
                       <div className="hidden font-mono text-sm text-muted-foreground sm:block">
-                        0{index + 1}
+                        {String(index + 1).padStart(2, "0")}
                       </div>
                     </div>
 
@@ -257,25 +234,19 @@ export default function ExperiencePage() {
                     </p>
 
                     {/* Technologies */}
-                    <div className="mt-7 flex flex-wrap gap-2">
-                      {experience.technologies.map((technology, techIndex) => (
+                    <motion.div
+                      variants={containerVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{
+                        once: true,
+                      }}
+                      className="mt-7 flex flex-wrap gap-2"
+                    >
+                      {experience.technologies.map((technology) => (
                         <motion.span
                           key={technology}
-                          initial={{
-                            opacity: 0,
-                            scale: 0.9,
-                          }}
-                          whileInView={{
-                            opacity: 1,
-                            scale: 1,
-                          }}
-                          viewport={{
-                            once: true,
-                          }}
-                          transition={{
-                            delay: techIndex * 0.05,
-                            duration: 0.25,
-                          }}
+                          variants={fadeUpVariants}
                           whileHover={{
                             scale: 1.05,
                           }}
@@ -284,7 +255,7 @@ export default function ExperiencePage() {
                           {technology}
                         </motion.span>
                       ))}
-                    </div>
+                    </motion.div>
 
                     {/* Bottom */}
                     <div className="mt-8 flex items-center gap-3 border-t pt-5 text-sm text-muted-foreground">
@@ -300,7 +271,9 @@ export default function ExperiencePage() {
                         <>
                           <Code2 className="size-4 text-primary" />
 
-                          <span>Frontend engineering & product development</span>
+                          <span>
+                            Frontend engineering & product development
+                          </span>
                         </>
                       )}
                     </div>
@@ -315,20 +288,12 @@ export default function ExperiencePage() {
             CURRENT DIRECTION
         ====================================================== */}
         <motion.section
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{
             once: true,
             amount: 0.2,
-          }}
-          transition={{
-            duration: 0.7,
           }}
           className="relative mt-24 overflow-hidden rounded-3xl border bg-background/60 p-8 backdrop-blur-md sm:p-12"
         >
@@ -344,7 +309,7 @@ export default function ExperiencePage() {
               transition={{
                 duration: 3,
                 repeat: Infinity,
-                ease: "easeInOut",
+                ease: "easeInOut" as const,
               }}
               className="flex size-14 items-center justify-center rounded-2xl bg-primary/10"
             >
@@ -376,17 +341,11 @@ export default function ExperiencePage() {
             BOTTOM STATEMENT
         ====================================================== */}
         <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{
-            opacity: 1,
-          }}
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{
             once: true,
-          }}
-          transition={{
-            duration: 0.6,
           }}
           className="mt-16 flex items-center justify-center gap-3 text-sm text-muted-foreground"
         >

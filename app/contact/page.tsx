@@ -14,6 +14,13 @@ import {
   FaEnvelope,
 } from "react-icons/fa";
 
+import {
+  containerVariants,
+  cardVariants,
+  fadeUpVariants,
+  scaleInVariants,
+} from "@/lib/animations";
+
 const links = [
   {
     label: "Email",
@@ -45,30 +52,6 @@ const interests = [
   "LLM applications and RAG",
   "Open-source collaboration",
 ];
-
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const cardVariants = {
-  hidden: {
-    opacity: 0,
-    y: 25,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.55,
-      ease: "easeOut",
-    },
-  },
-};
 
 export default function ContactPage() {
   return (
@@ -102,17 +85,9 @@ export default function ContactPage() {
             HERO
         ====================================================== */}
         <motion.header
-          initial={{
-            opacity: 0,
-            y: 25,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 0.6,
-          }}
+          variants={fadeUpVariants}
+          initial="hidden"
+          animate="visible"
           className="max-w-3xl"
         >
           {/* Badge */}
@@ -137,18 +112,9 @@ export default function ContactPage() {
 
           {/* Availability */}
           <motion.div
-            initial={{
-              opacity: 0,
-              scale: 0.95,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={{
-              delay: 0.35,
-              duration: 0.4,
-            }}
+            variants={scaleInVariants}
+            initial="hidden"
+            animate="visible"
             className="mt-7 inline-flex items-center gap-2 rounded-full border bg-background/60 px-4 py-2 text-sm backdrop-blur-md"
           >
             <span className="relative flex size-2">
@@ -168,7 +134,11 @@ export default function ContactPage() {
         <motion.section
           variants={containerVariants}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{
+            once: true,
+            amount: 0.15,
+          }}
           className="mt-16 grid gap-5 md:grid-cols-3"
         >
           {links.map((link) => {
@@ -180,17 +150,18 @@ export default function ContactPage() {
                 variants={cardVariants}
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
-                rel={link.external ? "noopener noreferrer" : undefined}
+                rel={
+                  link.external
+                    ? "noopener noreferrer"
+                    : undefined
+                }
                 whileHover={{
                   y: -7,
-                }}
-                transition={{
-                  duration: 0.2,
                 }}
                 className="group relative overflow-hidden rounded-3xl border bg-background/60 p-7 shadow-sm backdrop-blur-md transition-shadow duration-300 hover:shadow-2xl"
               >
                 {/* Hover glow */}
-                <div className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-primary/10 blur-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <div className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-primary/10 opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
 
                 <div className="relative">
                   {/* Icon */}
@@ -198,6 +169,9 @@ export default function ContactPage() {
                     whileHover={{
                       scale: 1.08,
                       rotate: 5,
+                    }}
+                    transition={{
+                      duration: 0.2,
                     }}
                     className="flex size-12 items-center justify-center rounded-xl bg-primary/10"
                   >
@@ -217,7 +191,9 @@ export default function ContactPage() {
                   {/* Arrow */}
                   <div className="mt-6 flex items-center gap-2 text-sm font-medium text-primary">
                     <span>
-                      {link.external ? "Visit profile" : "Send email"}
+                      {link.external
+                        ? "Visit profile"
+                        : "Send email"}
                     </span>
 
                     <ArrowUpRight className="size-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
@@ -232,20 +208,12 @@ export default function ContactPage() {
             MAIN CTA
         ====================================================== */}
         <motion.section
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{
             once: true,
             amount: 0.2,
-          }}
-          transition={{
-            duration: 0.7,
           }}
           className="relative mt-16 overflow-hidden rounded-3xl border bg-background/60 p-8 backdrop-blur-md sm:p-12"
         >
@@ -325,6 +293,7 @@ export default function ContactPage() {
                     transition={{
                       delay: index * 0.08,
                       duration: 0.35,
+                      ease: "easeOut" as const,
                     }}
                     className="flex items-start gap-3 text-sm text-muted-foreground"
                   >
@@ -342,17 +311,11 @@ export default function ContactPage() {
             BOTTOM STATEMENT
         ====================================================== */}
         <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{
-            opacity: 1,
-          }}
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
           viewport={{
             once: true,
-          }}
-          transition={{
-            duration: 0.6,
           }}
           className="mt-16 flex items-center justify-center gap-3 text-sm text-muted-foreground"
         >
