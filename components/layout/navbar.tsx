@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -23,7 +24,9 @@ const navItems = [
   { label: "About", href: "/about" },
   { label: "Skills", href: "/skills" },
   { label: "Projects", href: "/projects" },
+  { label: "AI Lab", href: "/ai-lab" },
   { label: "Experience", href: "/experience" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -37,13 +40,35 @@ export default function Navbar() {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [open]);
+
   const isDark = resolvedTheme === "dark";
 
   const toggleTheme = () => {
     setTheme(isDark ? "light" : "dark");
   };
 
-  const closeMenu = () => setOpen(false);
+  const closeMenu = () => {
+    setOpen(false);
+  };
 
   const isActive = (href: string) => {
     if (href === "/") {
@@ -55,31 +80,33 @@ export default function Navbar() {
 
   const ThemeIcon = () => {
     if (!mounted) {
-      return <span className="block h-[18px] w-[18px]" />;
+      return <span className="block h-5 w-5" />;
     }
 
     return isDark ? (
-      <Sun size={18} weight="duotone" />
+      <Sun size={19} weight="duotone" />
     ) : (
-      <Moon size={18} weight="duotone" />
+      <Moon size={19} weight="duotone" />
     );
   };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <div className="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-3 pt-3 sm:px-6 sm:pt-4 lg:px-8">
         <nav
+          aria-label="Primary navigation"
           className="
-            relative flex h-14 items-center justify-between
+            relative flex min-h-14 items-center justify-between
             rounded-2xl border border-border/60
-            bg-background/80 px-3
+            bg-background/85 px-2.5 sm:px-3
             shadow-lg shadow-black/[0.03]
             backdrop-blur-2xl
             supports-[backdrop-filter]:bg-background/60
           "
         >
-          {/* Subtle top highlight */}
+          {/* Top highlight */}
           <div
+            aria-hidden="true"
             className="
               pointer-events-none absolute inset-x-6 top-0 h-px
               bg-gradient-to-r from-transparent
@@ -91,14 +118,21 @@ export default function Navbar() {
           <Link
             href="/"
             onClick={closeMenu}
+            aria-label="MAH AI Engineer — Home"
             className="
-              group flex items-center gap-2.5
+              group flex min-h-11 items-center gap-2.5
               rounded-xl px-2 py-1.5
+              outline-none
+              focus-visible:ring-2
+              focus-visible:ring-emerald-400/70
+              focus-visible:ring-offset-2
+              focus-visible:ring-offset-background
             "
           >
             <div
               className="
-                relative flex h-9 w-9 items-center justify-center
+                relative flex h-9 w-9 shrink-0
+                items-center justify-center
                 overflow-hidden rounded-xl
                 border border-emerald-500/25
                 bg-emerald-500/10
@@ -109,6 +143,7 @@ export default function Navbar() {
               "
             >
               <div
+                aria-hidden="true"
                 className="
                   absolute inset-0
                   bg-emerald-400/10
@@ -123,7 +158,8 @@ export default function Navbar() {
                 weight="duotone"
                 className="
                   relative transition-transform
-                  duration-300 group-hover:scale-110
+                  duration-300
+                  group-hover:scale-110
                 "
               />
             </div>
@@ -148,9 +184,12 @@ export default function Navbar() {
           {/* Desktop Navigation */}
           <div
             className="
-              absolute left-1/2 hidden -translate-x-1/2
-              items-center rounded-xl border border-border/50
-              bg-muted/30 p-1 md:flex
+              absolute left-1/2 hidden
+              -translate-x-1/2
+              items-center
+              rounded-xl border border-border/50
+              bg-muted/30 p-1
+              md:flex
             "
           >
             {navItems.map((item) => {
@@ -160,10 +199,15 @@ export default function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  aria-current={active ? "page" : undefined}
                   className={`
-                    group relative rounded-lg px-3 py-1.5
+                    relative rounded-lg
+                    px-2.5 py-2
                     font-mono text-[11px] font-medium
+                    outline-none
                     transition-all duration-200
+                    focus-visible:ring-2
+                    focus-visible:ring-emerald-400/70
                     ${
                       active
                         ? "bg-background text-foreground shadow-sm"
@@ -175,10 +219,13 @@ export default function Navbar() {
 
                   {active && (
                     <span
+                      aria-hidden="true"
                       className="
                         absolute bottom-0.5 left-1/2
-                        h-0.5 w-3 -translate-x-1/2
-                        rounded-full bg-emerald-400
+                        h-0.5 w-3
+                        -translate-x-1/2
+                        rounded-full
+                        bg-emerald-400
                       "
                     />
                   )}
@@ -194,13 +241,17 @@ export default function Navbar() {
               href="https://github.com/azijulhakimbd"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="GitHub"
+              aria-label="Open GitHub profile in a new tab"
               className="
-                rounded-lg p-2
+                flex h-10 w-10 items-center justify-center
+                rounded-lg
                 text-muted-foreground
+                outline-none
                 transition-all
                 hover:bg-muted
                 hover:text-foreground
+                focus-visible:ring-2
+                focus-visible:ring-emerald-400/70
               "
             >
               <GithubLogo size={19} weight="regular" />
@@ -210,13 +261,21 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggleTheme}
-              aria-label="Toggle theme"
+              aria-label={
+                mounted
+                  ? `Switch to ${isDark ? "light" : "dark"} mode`
+                  : "Toggle theme"
+              }
               className="
-                rounded-lg p-2
+                flex h-10 w-10 items-center justify-center
+                rounded-lg
                 text-muted-foreground
+                outline-none
                 transition-all
                 hover:bg-muted
                 hover:text-foreground
+                focus-visible:ring-2
+                focus-visible:ring-emerald-400/70
               "
             >
               <ThemeIcon />
@@ -228,9 +287,10 @@ export default function Navbar() {
               size="sm"
               variant="outline"
               className="
-                ml-1 h-9 rounded-xl
+                ml-1 h-10 rounded-xl
                 border-border/60
                 bg-background/40
+                px-3
                 font-mono text-[11px]
                 transition-all duration-300
                 hover:border-emerald-500/40
@@ -239,50 +299,63 @@ export default function Navbar() {
               "
             >
               <a
-                href="/resume.pdf"
+                href="/Md Azijul Hakim Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Open resume in a new tab"
               >
                 <DownloadSimple size={15} weight="duotone" />
                 Resume
               </a>
             </Button>
 
-            {/* AI Agent */}
+            {/* AI Lab */}
             <Link
-              href="#ai-agent"
+              href="/ai-lab"
               className="
-                group ml-1 inline-flex items-center gap-2
-                rounded-xl border border-emerald-500/30
+                group ml-1 inline-flex min-h-10
+                items-center gap-2
+                rounded-xl
+                border border-emerald-500/30
                 bg-emerald-500/10
-                px-3 py-2
+                px-3
                 font-mono text-[11px] font-medium
                 text-emerald-400
+                outline-none
                 transition-all duration-300
                 hover:border-emerald-400/50
-                hover:bg-emerald-400/15
+                hover:bg-emerald-500/15
                 hover:shadow-lg
                 hover:shadow-emerald-500/10
+                focus-visible:ring-2
+                focus-visible:ring-emerald-400/70
               "
             >
               <span className="relative flex h-2 w-2">
                 <span
+                  aria-hidden="true"
                   className="
-                    absolute inline-flex h-full w-full
-                    animate-ping rounded-full
-                    bg-emerald-400 opacity-50
+                    absolute inline-flex
+                    h-full w-full
+                    animate-ping
+                    rounded-full
+                    bg-emerald-400
+                    opacity-50
                   "
                 />
 
                 <span
+                  aria-hidden="true"
                   className="
-                    relative inline-flex h-2 w-2
-                    rounded-full bg-emerald-400
+                    relative inline-flex
+                    h-2 w-2
+                    rounded-full
+                    bg-emerald-400
                   "
                 />
               </span>
 
-              AI Agent
+              AI Lab
 
               <ArrowUpRight
                 size={13}
@@ -301,30 +374,43 @@ export default function Navbar() {
             <button
               type="button"
               onClick={toggleTheme}
-              aria-label="Toggle theme"
+              aria-label={
+                mounted
+                  ? `Switch to ${isDark ? "light" : "dark"} mode`
+                  : "Toggle theme"
+              }
               className="
-                rounded-lg p-2
+                flex h-11 w-11 items-center justify-center
+                rounded-xl
                 text-muted-foreground
+                outline-none
                 transition-colors
                 hover:bg-muted
                 hover:text-foreground
+                focus-visible:ring-2
+                focus-visible:ring-emerald-400/70
               "
             >
               <ThemeIcon />
             </button>
 
-            {/* Menu */}
+            {/* Mobile Menu */}
             <button
               type="button"
               onClick={() => setOpen((value) => !value)}
-              aria-label={open ? "Close menu" : "Open menu"}
+              aria-label={open ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={open}
+              aria-controls="mobile-navigation"
               className="
-                rounded-lg p-2
+                flex h-11 w-11 items-center justify-center
+                rounded-xl
                 text-muted-foreground
+                outline-none
                 transition-colors
                 hover:bg-muted
                 hover:text-foreground
+                focus-visible:ring-2
+                focus-visible:ring-emerald-400/70
               "
             >
               {open ? <X size={21} /> : <List size={21} />}
@@ -332,13 +418,15 @@ export default function Navbar() {
           </div>
         </nav>
 
-        {/* Mobile Menu */}
+        {/* Mobile Navigation */}
         <div
+          id="mobile-navigation"
+          aria-hidden={!open}
           className={`
             overflow-hidden transition-all duration-300 md:hidden
             ${
               open
-                ? "mt-2 max-h-[600px] opacity-100"
+                ? "mt-2 max-h-[700px] opacity-100"
                 : "pointer-events-none max-h-0 opacity-0"
             }
           `}
@@ -346,13 +434,13 @@ export default function Navbar() {
           <div
             className="
               rounded-2xl border border-border/60
-              bg-background/85 p-2
+              bg-background/90 p-2
               shadow-xl
               backdrop-blur-2xl
               supports-[backdrop-filter]:bg-background/65
             "
           >
-            {/* Navigation Items */}
+            {/* Mobile Navigation Items */}
             {navItems.map((item) => {
               const active = isActive(item.href);
 
@@ -361,11 +449,18 @@ export default function Navbar() {
                   key={item.href}
                   href={item.href}
                   onClick={closeMenu}
+                  aria-current={active ? "page" : undefined}
+                  tabIndex={open ? 0 : -1}
                   className={`
-                    flex items-center justify-between
+                    flex min-h-12
+                    items-center justify-between
                     rounded-xl px-4 py-3
                     font-mono text-sm
+                    outline-none
                     transition-colors
+                    focus-visible:ring-2
+                    focus-visible:ring-inset
+                    focus-visible:ring-emerald-400/70
                     ${
                       active
                         ? "bg-muted/70 text-foreground"
@@ -377,9 +472,11 @@ export default function Navbar() {
 
                   {active && (
                     <span
+                      aria-hidden="true"
                       className="
                         h-1.5 w-1.5
-                        rounded-full bg-emerald-400
+                        rounded-full
+                        bg-emerald-400
                       "
                     />
                   )}
@@ -394,10 +491,12 @@ export default function Navbar() {
               asChild
               variant="outline"
               className="
-                mb-1 h-11 w-full justify-between
+                mb-1 h-12 w-full
+                justify-between
                 rounded-xl
                 border-border/60
                 bg-background/40
+                px-4
                 font-mono text-sm
                 hover:border-emerald-500/40
                 hover:bg-emerald-500/10
@@ -405,7 +504,7 @@ export default function Navbar() {
               "
             >
               <a
-                href="/resume.pdf"
+                href="/Md Azijul Hakim Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMenu}
@@ -419,22 +518,28 @@ export default function Navbar() {
               </a>
             </Button>
 
-            {/* Mobile AI Agent */}
+            {/* Mobile AI Lab */}
             <Link
-              href="#ai-agent"
+              href="/ai-lab"
               onClick={closeMenu}
+              tabIndex={open ? 0 : -1}
               className="
-                flex items-center justify-between
-                rounded-xl border border-emerald-500/25
+                flex min-h-12
+                items-center justify-between
+                rounded-xl
+                border border-emerald-500/25
                 bg-emerald-500/10
                 px-4 py-3
                 font-mono text-sm
                 text-emerald-400
+                outline-none
+                focus-visible:ring-2
+                focus-visible:ring-emerald-400/70
               "
             >
               <span className="flex items-center gap-2">
                 <Sparkle size={16} weight="fill" />
-                Launch AI Agent
+                Explore AI Lab
               </span>
 
               <ArrowUpRight size={16} />
@@ -446,17 +551,28 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={closeMenu}
+              tabIndex={open ? 0 : -1}
+              aria-label="Open GitHub profile in a new tab"
               className="
-                mt-1 flex items-center gap-2
-                rounded-xl px-4 py-3
+                mt-1 flex min-h-12
+                items-center gap-2
+                rounded-xl
+                px-4 py-3
                 font-mono text-sm
                 text-muted-foreground
+                outline-none
                 hover:bg-muted/50
                 hover:text-foreground
+                focus-visible:ring-2
+                focus-visible:ring-emerald-400/70
               "
             >
               <GithubLogo size={18} />
               GitHub
+              <ArrowUpRight
+                size={14}
+                className="ml-auto"
+              />
             </Link>
           </div>
         </div>
