@@ -11,12 +11,13 @@ import {
 import {
   FaGithub,
   FaLinkedin,
-  FaEnvelope,
 } from "react-icons/fa";
 
+import ContactForm from "@/components/contact-form";
+
 import {
-  containerVariants,
   cardVariants,
+  containerVariants,
   fadeUpVariants,
   scaleInVariants,
 } from "@/lib/animations";
@@ -101,13 +102,16 @@ export default function ContactPage() {
             <span>Let&apos;s connect</span>
           </div>
 
+          {/* Heading */}
           <h1 className="mt-7 text-4xl font-bold tracking-tight sm:text-6xl">
             Let&apos;s build something useful.
           </h1>
 
+          {/* Description */}
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-            Whether you have an AI product idea, a frontend project, or simply
-            want to connect, feel free to reach out.
+            Whether you have an AI product idea, a frontend
+            project, or simply want to connect, feel free to
+            reach out.
           </p>
 
           {/* Availability */}
@@ -119,6 +123,7 @@ export default function ContactPage() {
           >
             <span className="relative flex size-2">
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-500 opacity-50" />
+
               <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
             </span>
 
@@ -149,7 +154,9 @@ export default function ContactPage() {
                 key={link.label}
                 variants={cardVariants}
                 href={link.href}
-                target={link.external ? "_blank" : undefined}
+                target={
+                  link.external ? "_blank" : undefined
+                }
                 rel={
                   link.external
                     ? "noopener noreferrer"
@@ -205,7 +212,7 @@ export default function ContactPage() {
         </motion.section>
 
         {/* =====================================================
-            MAIN CTA
+            CONTACT FORM + INTRO
         ====================================================== */}
         <motion.section
           variants={fadeUpVariants}
@@ -220,9 +227,11 @@ export default function ContactPage() {
           {/* Glow */}
           <div className="pointer-events-none absolute -right-24 -top-24 size-72 rounded-full bg-primary/10 blur-[110px]" />
 
-          <div className="relative grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-            {/* Left */}
-            <div>
+          <div className="relative grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+            {/* =================================================
+                LEFT CONTENT
+            ================================================== */}
+            <div className="lg:sticky lg:top-24">
               <motion.div
                 animate={{
                   y: [0, -5, 0],
@@ -246,64 +255,53 @@ export default function ContactPage() {
               </h2>
 
               <p className="mt-4 max-w-xl leading-7 text-muted-foreground">
-                I&apos;m always interested in discussing AI products,
-                frontend engineering, creative experiments, and opportunities
-                to build something meaningful.
+                I&apos;m always interested in discussing AI
+                products, frontend engineering, creative
+                experiments, and opportunities to build
+                something meaningful.
               </p>
 
-              <motion.a
-                href="mailto:info@azijul.pro.bd"
-                whileHover={{
-                  scale: 1.03,
-                }}
-                whileTap={{
-                  scale: 0.98,
-                }}
-                className="mt-7 inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-medium text-primary-foreground shadow-sm transition-opacity hover:opacity-90"
-              >
-                <FaEnvelope className="size-4" />
+              {/* Interested in */}
+              <div className="mt-8 rounded-2xl border bg-muted/30 p-6">
+                <p className="text-sm font-medium uppercase tracking-[0.18em] text-muted-foreground">
+                  Currently interested in
+                </p>
 
-                Get in touch
+                <ul className="mt-5 space-y-4">
+                  {interests.map((interest, index) => (
+                    <motion.li
+                      key={interest}
+                      initial={{
+                        opacity: 0,
+                        x: 15,
+                      }}
+                      whileInView={{
+                        opacity: 1,
+                        x: 0,
+                      }}
+                      viewport={{
+                        once: true,
+                      }}
+                      transition={{
+                        delay: index * 0.08,
+                        duration: 0.35,
+                        ease: "easeOut",
+                      }}
+                      className="flex items-start gap-3 text-sm text-muted-foreground"
+                    >
+                      <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
 
-                <ArrowUpRight className="size-4" />
-              </motion.a>
+                      <span>{interest}</span>
+                    </motion.li>
+                  ))}
+                </ul>
+              </div>
             </div>
 
-            {/* Right */}
-            <div className="rounded-2xl border bg-muted/30 p-6">
-              <p className="text-sm font-medium uppercase tracking-[0.18em] text-muted-foreground">
-                Currently interested in
-              </p>
-
-              <ul className="mt-5 space-y-4">
-                {interests.map((interest, index) => (
-                  <motion.li
-                    key={interest}
-                    initial={{
-                      opacity: 0,
-                      x: 15,
-                    }}
-                    whileInView={{
-                      opacity: 1,
-                      x: 0,
-                    }}
-                    viewport={{
-                      once: true,
-                    }}
-                    transition={{
-                      delay: index * 0.08,
-                      duration: 0.35,
-                      ease: "easeOut" as const,
-                    }}
-                    className="flex items-start gap-3 text-sm text-muted-foreground"
-                  >
-                    <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-primary" />
-
-                    <span>{interest}</span>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
+            {/* =================================================
+                CONTACT FORM
+            ================================================== */}
+            <ContactForm />
           </div>
         </motion.section>
 
@@ -323,7 +321,9 @@ export default function ContactPage() {
 
           <Sparkles className="size-4 text-primary" />
 
-          <span>Let&apos;s create something meaningful.</span>
+          <span>
+            Let&apos;s create something meaningful.
+          </span>
 
           <Sparkles className="size-4 text-primary" />
 
