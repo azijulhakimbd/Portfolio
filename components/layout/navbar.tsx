@@ -299,7 +299,7 @@ export default function Navbar() {
               "
             >
               <a
-                href="/Md Azijul Hakim Resume.pdf"
+                href="/resume/md-azijul-hakim-resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Open resume in a new tab"
@@ -504,7 +504,7 @@ export default function Navbar() {
               "
             >
               <a
-                href="/Md Azijul Hakim Resume.pdf"
+                href="/resume/md-azijul-hakim-resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={closeMenu}
