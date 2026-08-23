@@ -1,35 +1,63 @@
 "use client";
 
-import { Environment } from "@react-three/drei";
+import { SCENE_CONFIG } from "@/lib/3d/scene-config";
 
-export default function SceneLights() {
+type SceneLightsProps = {
+  lowPower: boolean;
+  touchDevice: boolean;
+};
+
+export default function SceneLights({
+  lowPower,
+  touchDevice,
+}: SceneLightsProps) {
+  const enableShadows =
+    !lowPower &&
+    !touchDevice &&
+    SCENE_CONFIG.performance.desktopShadows;
+
+  const {
+    ambientIntensity,
+    directional,
+    keyLight,
+    fillLight,
+  } = SCENE_CONFIG.lighting;
+
   return (
     <>
-      <ambientLight intensity={0.45} />
+      {/* Ambient base light */}
+      <ambientLight
+        intensity={ambientIntensity}
+      />
 
+      {/* Main directional light */}
       <directionalLight
-        position={[4, 7, 4]}
-        intensity={2}
-        castShadow
-        shadow-mapSize-width={1024}
-        shadow-mapSize-height={1024}
+        position={directional.position}
+        intensity={directional.intensity}
+        castShadow={enableShadows}
+        shadow-mapSize-width={
+          enableShadows ? 512 : 256
+        }
+        shadow-mapSize-height={
+          enableShadows ? 512 : 256
+        }
       />
 
+      {/* Emerald key light */}
       <pointLight
-        position={[-4, 3, 2]}
-        intensity={12}
-        distance={8}
-        color="#10b981"
+        position={keyLight.position}
+        intensity={keyLight.intensity}
+        distance={keyLight.distance}
+        color={keyLight.color}
       />
 
+      {/* Emerald fill light */}
       <pointLight
-        position={[4, 2, -3]}
-        intensity={8}
-        distance={7}
-        color="#34d399"
+        position={fillLight.position}
+        intensity={fillLight.intensity}
+        distance={fillLight.distance}
+        color={fillLight.color}
       />
-
-      <Environment preset="night" />
     </>
   );
 }
