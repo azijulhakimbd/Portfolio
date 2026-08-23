@@ -1,367 +1,158 @@
-"use client";
-
 import Link from "next/link";
-import {
-  ArrowUpRight,
-  Brain,
-  FlaskConical,
-  Sparkles,
-  Activity,
-  CircleDot,
-} from "lucide-react";
-import { motion, type Variants } from "framer-motion";
+import { ArrowLeft, BrainCircuit, Sparkles } from "lucide-react";
+import type { Metadata } from "next";
 
-const experiments = [
-  {
-    slug: "ai-agent",
-    title: "AI Agent",
-    description:
-      "Exploring tool-using AI agents that can reason about tasks and execute actions.",
-    category: "Agents",
-    icon: Brain,
-    number: "01",
-    tags: ["LLM", "Tools", "Agents"],
-  },
-  {
-    slug: "rag-search",
-    title: "RAG Search",
-    description:
-      "Experimenting with retrieval-augmented generation and contextual AI responses.",
-    category: "RAG",
-    icon: Sparkles,
-    number: "02",
-    tags: ["RAG", "Embeddings", "Search"],
-  },
-  {
-    slug: "ai-ui",
-    title: "AI UI",
-    description:
-      "Exploring interfaces designed specifically for AI-powered applications.",
-    category: "Generative UI",
-    icon: FlaskConical,
-    number: "03",
-    tags: ["AI UI", "UX", "Generative"],
-  },
-];
+import AIWorkspaceClient from "@/components/3d/AIWorkspaceClient";
 
-const containerVariants: Variants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.12,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    y: 30,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  },
+export const metadata: Metadata = {
+  title: "AI Lab | Md. Azijul Hakim",
+  description:
+    "An interactive 3D AI engineering workspace built with Next.js, React Three Fiber, and TypeScript.",
 };
 
 export default function AILabPage() {
   return (
-    <main className="relative min-h-screen overflow-hidden">
-      {/* =====================================================
+    <main className="min-h-screen overflow-hidden bg-[#020504] text-white">
+      {/* =========================================================
           BACKGROUND
-      ====================================================== */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        {/* Main glow */}
-        <motion.div
-          animate={{
-            scale: [1, 1.08, 1],
-            opacity: [0.5, 0.7, 0.5],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute left-1/2 top-[-220px] h-[600px] w-[800px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]"
-        />
+      ========================================================= */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 -z-10"
+      >
+        <div className="absolute left-1/2 top-0 h-[500px] w-[700px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-[140px]" />
 
-        {/* Left glow */}
-        <div className="absolute -left-40 top-[35%] size-[400px] rounded-full bg-blue-500/10 blur-[130px]" />
+        <div className="absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-emerald-400/5 blur-[120px]" />
 
-        {/* Right glow */}
-        <div className="absolute -right-40 bottom-[10%] size-[450px] rounded-full bg-purple-500/10 blur-[140px]" />
-
-        {/* Grid */}
-        <div
-          className="absolute inset-0 opacity-[0.035]"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
-            backgroundSize: "40px 40px",
-          }}
-        />
+        <div className="absolute bottom-1/3 left-0 h-[300px] w-[300px] rounded-full bg-emerald-500/5 blur-[120px]" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8 lg:py-28">
-        {/* =====================================================
+      <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        {/* =======================================================
             HEADER
-        ====================================================== */}
-        <motion.header
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="mx-auto max-w-4xl text-center"
-        >
-          {/* Status */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: 0.5,
-              delay: 0.1,
-            }}
-            className="mx-auto inline-flex items-center gap-2 rounded-full border bg-background/70 px-4 py-2 text-sm text-muted-foreground shadow-sm backdrop-blur-xl"
+        ======================================================= */}
+        <header className="mb-8 flex items-center justify-between">
+          <Link
+            href="/"
+            className="group inline-flex items-center gap-2 text-sm text-white/50 transition-colors duration-200 hover:text-white"
+            aria-label="Back to portfolio home"
           >
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-primary opacity-75" />
-              <span className="relative inline-flex size-2 rounded-full bg-primary" />
+            <ArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-1" />
+
+            <span>Back to portfolio</span>
+          </Link>
+
+          {/* System Status */}
+          <div className="hidden items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1.5 sm:flex">
+            <span
+              aria-hidden="true"
+              className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_#34d399]"
+            />
+
+            <span className="font-mono text-[10px] tracking-wider text-emerald-300">
+              3D SYSTEM ONLINE
             </span>
+          </div>
+        </header>
 
-            <span>AI Lab</span>
+        {/* =======================================================
+            HERO
+        ======================================================= */}
+        <section
+          className="mb-10 max-w-3xl"
+          aria-labelledby="ai-lab-title"
+        >
+          {/* Eyebrow */}
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-3 py-1.5">
+            <BrainCircuit
+              className="h-3.5 w-3.5 text-emerald-400"
+              aria-hidden="true"
+            />
 
-            <span className="text-border">•</span>
-
-            <span>Experiments in progress</span>
-          </motion.div>
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-emerald-300">
+              Frontend AI Engineering
+            </span>
+          </div>
 
           {/* Heading */}
-          <h1 className="mt-8 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl">
-            Exploring the
-            <span className="block bg-gradient-to-r from-primary via-primary/80 to-primary/50 bg-clip-text text-transparent">
-              future of AI.
-            </span>
+          <h1
+            id="ai-lab-title"
+            className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
+          >
+            Welcome to my{" "}
+            <span className="text-emerald-400">AI Lab.</span>
           </h1>
 
           {/* Description */}
-          <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-muted-foreground">
-            A collection of experiments where I explore agents, LLMs, RAG,
-            generative interfaces, AI SDKs, and emerging AI development
-            techniques.
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-white/50 sm:text-base">
+            Explore an interactive 3D representation of my frontend and AI
+            engineering workflow. Orbit the workspace, interact with the
+            technology nodes, and customize the environment.
           </p>
 
-          {/* Small metadata */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-2 rounded-full border bg-background/50 px-4 py-2 backdrop-blur-md">
-              <Activity className="size-4 text-primary" />
-              Active research
-            </span>
+          {/* Technology */}
+          <div className="mt-5 flex items-center gap-2 text-xs text-white/30">
+            <Sparkles
+              className="h-3.5 w-3.5 text-emerald-400"
+              aria-hidden="true"
+            />
 
-            <span className="inline-flex items-center gap-2 rounded-full border bg-background/50 px-4 py-2 backdrop-blur-md">
-              <CircleDot className="size-4 text-primary" />
-              {experiments.length} experiments
-            </span>
+            <span>Built with React Three Fiber + Three.js</span>
           </div>
-        </motion.header>
+        </section>
 
-        {/* =====================================================
-            EXPERIMENT GRID
-        ====================================================== */}
-        <motion.section
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="mt-20 grid gap-6 lg:grid-cols-3"
+        {/* =======================================================
+            3D EXPERIENCE
+        ======================================================= */}
+        <section
+          aria-label="Interactive 3D AI workspace"
+          className="relative"
         >
-          {experiments.map((experiment) => {
-            const Icon = experiment.icon;
+          <AIWorkspaceClient />
+        </section>
 
-            return (
-              <motion.div
-                key={experiment.slug}
-                variants={itemVariants}
-                whileHover={{
-                  y: -8,
-                }}
-                transition={{
-                  duration: 0.25,
-                }}
-              >
-                <Link
-                  href={`/ai-lab/${experiment.slug}`}
-                  className="group relative block h-full overflow-hidden rounded-3xl border bg-background/60 p-7 shadow-sm backdrop-blur-xl transition-shadow duration-500 hover:shadow-2xl"
-                >
-                  {/* Hover glow */}
-                  <div className="pointer-events-none absolute -right-24 -top-24 size-64 rounded-full bg-primary/10 opacity-0 blur-[90px] transition-opacity duration-500 group-hover:opacity-100" />
-
-                  {/* Animated border glow */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-primary/20"
-                  />
-
-                  <div className="relative">
-                    {/* Top row */}
-                    <div className="flex items-center justify-between">
-                      <motion.div
-                        whileHover={{
-                          rotate: 8,
-                          scale: 1.08,
-                        }}
-                        transition={{ duration: 0.2 }}
-                        className="flex size-14 items-center justify-center rounded-2xl border bg-primary/10 text-primary"
-                      >
-                        <Icon className="size-7" />
-                      </motion.div>
-
-                      <span className="font-mono text-xs text-muted-foreground/50">
-                        {experiment.number}
-                      </span>
-                    </div>
-
-                    {/* Category */}
-                    <div className="mt-7">
-                      <span className="inline-flex rounded-full border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-                        {experiment.category}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h2 className="mt-4 flex items-center gap-2 text-2xl font-semibold tracking-tight">
-                      {experiment.title}
-
-                      <ArrowUpRight className="size-5 opacity-0 -translate-x-1 translate-y-1 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 group-hover:opacity-100" />
-                    </h2>
-
-                    {/* Description */}
-                    <p className="mt-4 min-h-[84px] leading-7 text-muted-foreground">
-                      {experiment.description}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="mt-7 flex flex-wrap gap-2">
-                      {experiment.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-lg border bg-muted/30 px-2.5 py-1.5 text-xs text-muted-foreground"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Bottom */}
-                    <div className="mt-8 flex items-center justify-between border-t pt-5">
-                      <span className="text-sm font-medium text-muted-foreground transition-colors group-hover:text-foreground">
-                        Explore experiment
-                      </span>
-
-                      <motion.div
-                        whileHover={{
-                          x: 4,
-                          y: -4,
-                        }}
-                        className="flex size-9 items-center justify-center rounded-full border bg-background/70"
-                      >
-                        <ArrowUpRight className="size-4" />
-                      </motion.div>
-                    </div>
-                  </div>
-                </Link>
-              </motion.div>
-            );
-          })}
-        </motion.section>
-
-        {/* =====================================================
-            AI RESEARCH SECTION
-        ====================================================== */}
-        <motion.section
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.2,
-          }}
-          transition={{
-            duration: 0.7,
-          }}
-          className="relative mt-24 overflow-hidden rounded-3xl border bg-background/60 p-8 backdrop-blur-xl sm:p-12"
+        {/* =======================================================
+            ASSIGNMENT INFORMATION
+        ======================================================= */}
+        <section
+          className="mt-10 grid gap-4 md:grid-cols-3"
+          aria-label="AI Lab features"
         >
-          {/* Glow */}
-          <div className="pointer-events-none absolute -right-20 -top-20 size-72 rounded-full bg-primary/10 blur-[120px]" />
+          <InfoCard
+            title="Interactive"
+            description="Click technology nodes, change materials, orbit the scene, and control animation."
+          />
 
-          <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-2xl">
-              <div className="flex items-center gap-3">
-                <div className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Brain className="size-5" />
-                </div>
+          <InfoCard
+            title="Performance"
+            description="The 3D experience is lazy-loaded with reduced-motion and low-power optimizations."
+          />
 
-                <span className="text-sm font-medium uppercase tracking-[0.2em] text-muted-foreground">
-                  Research direction
-                </span>
-              </div>
-
-              <h2 className="mt-5 text-3xl font-bold tracking-tight sm:text-4xl">
-                From experiments to{" "}
-                <span className="text-primary">real products.</span>
-              </h2>
-
-              <p className="mt-4 leading-7 text-muted-foreground">
-                The goal of this lab is to turn small AI experiments into
-                useful, production-ready experiences that combine intelligent
-                systems with thoughtful frontend interfaces.
-              </p>
-            </div>
-
-            <motion.div
-              animate={{
-                rotate: [0, 5, -5, 0],
-              }}
-              transition={{
-                duration: 6,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="hidden shrink-0 lg:block"
-            >
-              <div className="flex size-32 items-center justify-center rounded-3xl border bg-primary/5">
-                <Brain className="size-14 text-primary/70" />
-              </div>
-            </motion.div>
-          </div>
-        </motion.section>
-
-        {/* Bottom */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mt-16 flex items-center justify-center gap-3 text-sm text-muted-foreground"
-        >
-          <span className="h-px w-12 bg-border" />
-
-          <Sparkles className="size-4 text-primary" />
-
-          <span>Experiment. Learn. Build.</span>
-
-          <Sparkles className="size-4 text-primary" />
-
-          <span className="h-px w-12 bg-border" />
-        </motion.div>
+          <InfoCard
+            title="Responsive"
+            description="The workspace adapts to desktop and mobile layouts while keeping controls accessible."
+          />
+        </section>
       </div>
     </main>
+  );
+}
+
+/* =========================================================
+   INFO CARD
+========================================================= */
+
+interface InfoCardProps {
+  title: string;
+  description: string;
+}
+
+function InfoCard({ title, description }: InfoCardProps) {
+  return (
+    <article className="rounded-2xl border border-white/10 bg-white/[0.025] p-5 transition-colors duration-200 hover:border-emerald-500/20 hover:bg-white/[0.04]">
+      <h2 className="text-sm font-semibold text-white">{title}</h2>
+
+      <p className="mt-2 text-xs leading-6 text-white/40">{description}</p>
+    </article>
   );
 }
