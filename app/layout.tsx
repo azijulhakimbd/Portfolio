@@ -130,20 +130,19 @@ export default function RootLayout({
     >
       <body>
         {/* Google Analytics */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-H6R71XN2JJ"
-          strategy="afterInteractive"
-        />
+       <Script
+  src="https://www.googletagmanager.com/gtag/js?id=G-H6R71XN2JJ"
+  strategy="lazyOnload"
+/>
 
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){window.dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-H6R71XN2JJ');
-          `}
-        </Script>
+<Script id="google-analytics" strategy="lazyOnload">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){window.dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-H6R71XN2JJ');
+  `}
+</Script>
 
         <ThemeProvider>
           <Navbar />
