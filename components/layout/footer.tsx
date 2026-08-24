@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -20,9 +21,9 @@ const footerLinks = {
     { label: "Experience", href: "/experience" },
   ],
   projects: [
-    { label: "AI Agent", href: "/projects#ai-agent" },
-    { label: "AI Search", href: "/projects#ai-search" },
-    { label: "AI Portfolio", href: "/projects#portfolio" },
+    { label: "3D Experience", href: "/ai-lab" },
+    { label: "Button with Brain", href: "https://motion-buttons.vercel.app/" },
+    { label: "AI Info Directory", href: "https://hello-nalitabari.vercel.app/" },
   ],
 };
 
@@ -87,7 +88,8 @@ export default function Footer() {
                   weight="duotone"
                   className="
                     relative transition-transform
-                    duration-300 group-hover:scale-110
+                    duration-300
+                    group-hover:scale-110
                   "
                 />
               </div>
@@ -244,6 +246,7 @@ export default function Footer() {
             </h3>
 
             <div className="mt-5 space-y-3">
+              {/* Email */}
               <a
                 href="mailto:info@azijul.pro.bd"
                 className="
@@ -273,6 +276,7 @@ export default function Footer() {
                 />
               </a>
 
+              {/* Location */}
               <div
                 className="
                   flex items-center gap-3
@@ -292,6 +296,7 @@ export default function Footer() {
 
             {/* Socials */}
             <div className="mt-6 flex items-center gap-2">
+              {/* GitHub */}
               <Link
                 href="https://github.com/azijulhakimbd"
                 target="_blank"
@@ -311,6 +316,7 @@ export default function Footer() {
                 <GithubLogo size={18} />
               </Link>
 
+              {/* LinkedIn */}
               <Link
                 href="https://www.linkedin.com/in/azijulhakimbd"
                 target="_blank"
@@ -330,8 +336,9 @@ export default function Footer() {
                 <LinkedinLogo size={18} />
               </Link>
 
+              {/* AI Agent */}
               <Link
-                href="#ai-agent"
+                href="/ai-agent"
                 aria-label="AI Agent"
                 className="
                   flex h-9 w-9 items-center justify-center
@@ -346,6 +353,98 @@ export default function Footer() {
                 <Sparkle size={18} weight="fill" />
               </Link>
             </div>
+          </div>
+        </div>
+
+        {/* FlyRank Graduate */}
+        <div
+          className="
+            border-t border-border/50
+            py-7
+          "
+        >
+          <div className="flex flex-col items-center justify-center gap-4 text-center">
+            <div
+              className="
+                inline-flex items-center gap-2
+                rounded-full
+                border border-emerald-500/20
+                bg-emerald-500/5
+                px-3 py-1.5
+                font-mono text-[9px]
+                uppercase tracking-[0.18em]
+                text-emerald-400
+              "
+            >
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+              FlyRank Graduate
+            </div>
+
+          
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Verify Md. Azijul Hakim as a FlyRank AI Fluency Graduate"
+              className="
+                group inline-flex items-center gap-3
+                rounded-xl
+                border border-border/60
+                bg-muted/20
+                px-4 py-3
+                transition-all duration-300
+                hover:border-emerald-500/30
+                hover:bg-emerald-500/10
+              "
+            >
+              <div
+                className="
+                  flex h-10 w-10 shrink-0
+                  items-center justify-center
+                  rounded-lg
+                  border border-emerald-500/20
+                  bg-emerald-500/10
+                  text-emerald-400
+                  transition-transform duration-300
+                  group-hover:scale-105
+                "
+              >
+                <Sparkle size={20} weight="fill" />
+              </div>
+
+              <div className="text-left">
+                <p
+                  className="
+                    font-mono text-xs font-semibold
+                    text-foreground
+                    transition-colors
+                    group-hover:text-emerald-400
+                  "
+                >
+                  Frontend AI Engineer
+                </p>
+
+                <p
+                  className="
+                    mt-0.5 font-mono text-[9px]
+                    text-muted-foreground
+                  "
+                >
+                  AI Fluency Graduate · Verify Credential
+                </p>
+              </div>
+
+              <ArrowUpRight
+                size={14}
+                className="
+                  text-muted-foreground
+                  transition-all duration-200
+                  group-hover:translate-x-0.5
+                  group-hover:-translate-y-0.5
+                  group-hover:text-emerald-400
+                "
+              />
+            </a>
           </div>
         </div>
 
@@ -378,7 +477,9 @@ export default function Footer() {
           >
             <span>Built with</span>
 
-            <span className="text-foreground">Next.js</span>
+            <span className="text-foreground">
+              Next.js
+            </span>
 
             <span className="text-border">•</span>
 
