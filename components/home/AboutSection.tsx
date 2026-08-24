@@ -74,7 +74,7 @@ const itemVariants: Variants = {
   },
 };
 
-export default function AboutPage() {
+export default function AboutSection () {
   return (
     <main className="relative min-h-screen overflow-hidden">
       {/* Background */}

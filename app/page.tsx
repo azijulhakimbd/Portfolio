@@ -1,24 +1,24 @@
 
 
+import SkillsSection from "@/components/home/SkillsSection";
 import AboutPage from "../components/home/AboutSection";
+import CertificationsSection from "../components/home/CertificationsSection";
 import Hero from "../components/home/hero";
+import ExperienceSection from "@/components/home/ExperienceSection";
+import ProjectsSection from "@/components/home/ProjectSection";
+import ContactSection from "@/components/home/ContactSection";
 
-import CertificationsPage from "./certifications/page";
-import ContactPage from "./contact/page";
-import ExperiencePage from "./experience/page";
-import ProjectsPage from "./projects/page";
-import SkillsPage from "./skills/page";
 
 export default function Home() {
   return (
     <main>
      <Hero />
-     <AboutPage />
-     <SkillsPage />
-     <ExperiencePage />
-     <ProjectsPage/>
-     <CertificationsPage />
-     <ContactPage />
+      <AboutPage />
+     <SkillsSection />
+     <ExperienceSection />
+     <ProjectsSection />
+     <CertificationsSection />
+     <ContactSection />
     </main>
   );
 }
