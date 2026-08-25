@@ -8,6 +8,7 @@ import {
   CalendarDays,
   Code2,
   Sparkles,
+  Users,
 } from "lucide-react";
 
 import {
@@ -33,6 +34,24 @@ const experiences = [
       "RAG",
     ],
     current: true,
+    type: "ai",
+  },
+  {
+    period: "September — November 2025",
+    role: "Team Lead",
+    company: "DevOps Team",
+    description:
+      "Led a development team in building EasyStay, a short-term rental platform. Coordinated the team’s development workflow, contributed to frontend architecture and implementation, and helped guide the project from planning through feature development.",
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Prisma",
+      "Supabase",
+    ],
+    current: false,
+    type: "leadership",
   },
   {
     period: "2025 — 2026",
@@ -48,6 +67,7 @@ const experiences = [
       "shadcn/ui",
     ],
     current: false,
+    type: "frontend",
   },
 ];
 
@@ -99,8 +119,9 @@ export default function ExperienceSection() {
           </h1>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground">
-            My journey across frontend engineering and AI development,
-            continuously learning, building, and exploring new technologies.
+            My journey across frontend engineering, team leadership, and AI
+            development, continuously learning, building, and exploring new
+            technologies.
           </p>
         </motion.header>
 
@@ -142,10 +163,14 @@ export default function ExperienceSection() {
             {experiences.map((experience, index) => (
               <motion.article
                 key={`${experience.company}-${experience.period}`}
-                variants={fadeLeftVariants}
+                variants={
+                  index % 2 === 0 ? fadeLeftVariants : fadeRightVariants
+                }
                 className="relative pl-10 sm:pl-12"
               >
-                {/* Timeline point */}
+                {/* =================================================
+                    TIMELINE POINT
+                ================================================== */}
                 <div className="absolute left-0 top-8 flex items-center justify-center">
                   {experience.current && (
                     <motion.span
@@ -167,7 +192,9 @@ export default function ExperienceSection() {
                   </span>
                 </div>
 
-                {/* Card */}
+                {/* =================================================
+                    EXPERIENCE CARD
+                ================================================== */}
                 <motion.div
                   whileHover={{
                     y: -5,
@@ -181,7 +208,9 @@ export default function ExperienceSection() {
                   <div className="pointer-events-none absolute -right-24 -top-24 size-64 rounded-full bg-primary/10 opacity-0 blur-[90px] transition-opacity duration-500 group-hover:opacity-100" />
 
                   <div className="relative">
-                    {/* Top row */}
+                    {/* =================================================
+                        TOP ROW
+                    ================================================== */}
                     <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                       <div>
                         {/* Period */}
@@ -196,7 +225,7 @@ export default function ExperienceSection() {
                           {experience.role}
                         </h2>
 
-                        {/* Company */}
+                        {/* Company / Team */}
                         <div className="mt-2 flex items-center gap-2 text-sm font-medium text-primary">
                           <BriefcaseBusiness className="size-4" />
 
@@ -210,7 +239,10 @@ export default function ExperienceSection() {
                       </div>
                     </div>
 
-                    {/* Current status */}
+                    {/* =================================================
+                        SPECIAL BADGES
+                    ================================================== */}
+
                     {experience.current && (
                       <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary">
                         <motion.span
@@ -228,12 +260,50 @@ export default function ExperienceSection() {
                       </div>
                     )}
 
-                    {/* Description */}
+                    {experience.type === "leadership" && (
+                      <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary">
+                        <Users className="size-3.5" />
+
+                        Team Leadership
+                      </div>
+                    )}
+
+                    {/* =================================================
+                        DESCRIPTION
+                    ================================================== */}
                     <p className="mt-6 max-w-3xl text-base leading-8 text-muted-foreground">
                       {experience.description}
                     </p>
 
-                    {/* Technologies */}
+                    {/* =================================================
+                        PROJECT HIGHLIGHT
+                    ================================================== */}
+
+                    {experience.type === "leadership" && (
+                      <div className="mt-7 rounded-2xl border bg-muted/30 p-5">
+                        <div className="flex items-start gap-3">
+                          <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                            <BriefcaseBusiness className="size-5 text-primary" />
+                          </div>
+
+                          <div>
+                            <p className="text-sm font-semibold">
+                              Project: EasyStay
+                            </p>
+
+                            <p className="mt-1 text-sm leading-6 text-muted-foreground">
+                              A short-term rental platform designed to connect
+                              guests with rental properties and provide a
+                              modern booking experience.
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* =================================================
+                        TECHNOLOGIES
+                    ================================================== */}
                     <motion.div
                       variants={containerVariants}
                       initial="hidden"
@@ -257,14 +327,24 @@ export default function ExperienceSection() {
                       ))}
                     </motion.div>
 
-                    {/* Bottom */}
+                    {/* =================================================
+                        BOTTOM
+                    ================================================== */}
                     <div className="mt-8 flex items-center gap-3 border-t pt-5 text-sm text-muted-foreground">
-                      {experience.current ? (
+                      {experience.type === "ai" ? (
                         <>
                           <Brain className="size-4 text-primary" />
 
                           <span>
                             Focused on AI-powered product development
+                          </span>
+                        </>
+                      ) : experience.type === "leadership" ? (
+                        <>
+                          <Users className="size-4 text-primary" />
+
+                          <span>
+                            Team leadership & collaborative product development
                           </span>
                         </>
                       ) : (
@@ -353,7 +433,7 @@ export default function ExperienceSection() {
 
           <Sparkles className="size-4 text-primary" />
 
-          <span>Building. Learning. Evolving.</span>
+          <span>Building. Leading. Learning. Evolving.</span>
 
           <Sparkles className="size-4 text-primary" />
 

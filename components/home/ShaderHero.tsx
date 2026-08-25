@@ -1138,7 +1138,7 @@ export default function ShaderHero() {
     };
   }, []);
 
-  return (
+   return (
     <section
       className="
         relative
@@ -1163,7 +1163,8 @@ export default function ShaderHero() {
           z-0
           h-full
           w-full
-          opacity-75
+          opacity-70
+          sm:opacity-75
           dark:opacity-90
         "
       />
@@ -1179,8 +1180,9 @@ export default function ShaderHero() {
           absolute
           inset-0
           z-[1]
-          bg-[radial-gradient(circle_at_center,transparent_10%,hsl(var(--background)/0.32)_68%,hsl(var(--background))_100%)]
-          dark:bg-[radial-gradient(circle_at_center,transparent_15%,hsl(var(--background)/0.45)_75%,hsl(var(--background))_100%)]
+          bg-[radial-gradient(circle_at_center,transparent_8%,hsl(var(--background)/0.38)_68%,hsl(var(--background))_100%)]
+          sm:bg-[radial-gradient(circle_at_center,transparent_10%,hsl(var(--background)/0.32)_68%,hsl(var(--background))_100%)]
+          dark:bg-[radial-gradient(circle_at_center,transparent_12%,hsl(var(--background)/0.45)_75%,hsl(var(--background))_100%)]
         "
       />
 
@@ -1192,7 +1194,8 @@ export default function ShaderHero() {
           inset-x-0
           bottom-0
           z-[1]
-          h-40
+          h-28
+          sm:h-40
           bg-gradient-to-t
           from-background
           to-transparent
@@ -1210,14 +1213,15 @@ export default function ShaderHero() {
           absolute
           inset-0
           z-[2]
-          opacity-[0.025]
+          opacity-[0.02]
+          sm:opacity-[0.025]
           dark:opacity-[0.035]
         "
         style={{
           backgroundImage:
             "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px)",
           backgroundSize:
-            "clamp(28px, 5vw, 44px) clamp(28px, 5vw, 44px)",
+            "clamp(26px, 7vw, 44px) clamp(26px, 7vw, 44px)",
         }}
       />
 
@@ -1314,9 +1318,10 @@ export default function ShaderHero() {
           max-w-7xl
           items-center
           px-4
-          py-10
+          py-7
+          xs:py-8
           sm:px-6
-          sm:py-14
+          sm:py-12
           md:px-8
           md:py-16
           lg:px-10
@@ -1332,8 +1337,9 @@ export default function ShaderHero() {
             w-full
             max-w-6xl
             items-center
-            gap-10
-            sm:gap-12
+            gap-7
+            sm:gap-10
+            md:gap-12
             lg:grid-cols-[1.08fr_0.92fr]
             lg:gap-14
             xl:gap-20
@@ -1359,9 +1365,9 @@ export default function ShaderHero() {
             <div
               className="
                 mx-auto
-                mb-5
+                mb-4
                 inline-flex
-                max-w-full
+                max-w-[calc(100vw-2rem)]
                 items-center
                 gap-2
                 rounded-full
@@ -1370,7 +1376,7 @@ export default function ShaderHero() {
                 bg-background/70
                 px-3
                 py-1.5
-                text-[10px]
+                text-[9px]
                 font-medium
                 text-muted-foreground
                 shadow-lg
@@ -1384,9 +1390,9 @@ export default function ShaderHero() {
                 dark:bg-background/60
               "
             >
-              <span className="relative flex h-2 w-2 shrink-0">
+              <span className="relative flex h-1.5 w-1.5 shrink-0 sm:h-2 sm:w-2">
                 <span className="absolute inset-0 animate-ping rounded-full bg-emerald-500 opacity-50 dark:bg-emerald-400 dark:opacity-60" />
-                <span className="relative h-2 w-2 rounded-full bg-emerald-500 dark:bg-emerald-400" />
+                <span className="relative h-full w-full rounded-full bg-emerald-500 dark:bg-emerald-400" />
               </span>
 
               <span className="truncate">
@@ -1398,16 +1404,19 @@ export default function ShaderHero() {
 
             <div
               className="
-                mb-4
+                mb-3
                 flex
                 items-center
                 justify-center
-                gap-2
+                gap-1.5
                 font-mono
-                text-[9px]
+                text-[8px]
                 uppercase
-                tracking-[0.18em]
+                tracking-[0.14em]
                 text-emerald-600
+                min-[375px]:text-[9px]
+                sm:mb-4
+                sm:gap-2
                 sm:text-[10px]
                 md:text-xs
                 lg:justify-start
@@ -1415,10 +1424,10 @@ export default function ShaderHero() {
               "
             >
               <Sparkle
-                size={14}
+                size={12}
                 weight="fill"
                 aria-hidden="true"
-                className="animate-[sparkle_3s_ease-in-out_infinite]"
+                className="animate-[sparkle_3s_ease-in-out_infinite] sm:size-[14px]"
               />
 
               <span>
@@ -1432,14 +1441,17 @@ export default function ShaderHero() {
               className="
                 mx-auto
                 w-full
-                max-w-[22rem]
+                max-w-[20rem]
                 font-mono
-                text-[clamp(2.35rem,10vw,5.8rem)]
+                text-[clamp(2.15rem,10.5vw,3.5rem)]
                 font-bold
-                leading-[1.02]
-                tracking-[-0.055em]
+                leading-[0.98]
+                tracking-[-0.06em]
+                min-[375px]:max-w-[22rem]
+                min-[375px]:text-[clamp(2.35rem,10vw,4rem)]
                 sm:max-w-2xl
-                md:text-[clamp(3rem,7vw,5rem)]
+                sm:text-[clamp(3rem,7vw,5rem)]
+                md:text-[clamp(3.2rem,7vw,5rem)]
                 lg:mx-0
                 lg:max-w-4xl
                 lg:text-[clamp(3.4rem,5.2vw,5.8rem)]
@@ -1463,11 +1475,12 @@ export default function ShaderHero() {
                     absolute
                     -bottom-0.5
                     left-0
-                    h-1
+                    h-0.5
                     w-full
                     rounded-full
                     bg-emerald-500/10
                     blur-md
+                    min-[375px]:h-1
                     sm:h-1.5
                     dark:bg-emerald-400/10
                   "
@@ -1483,12 +1496,15 @@ export default function ShaderHero() {
             <p
               className="
                 mx-auto
-                mt-5
+                mt-4
                 w-full
-                max-w-[22rem]
-                text-sm
-                leading-6
+                max-w-[20rem]
+                text-[13px]
+                leading-5
                 text-muted-foreground
+                min-[375px]:max-w-[22rem]
+                min-[375px]:text-sm
+                min-[375px]:leading-6
                 sm:mt-6
                 sm:max-w-xl
                 sm:text-base
@@ -1521,13 +1537,15 @@ export default function ShaderHero() {
             <div
               className="
                 mx-auto
-                mt-7
+                mt-6
                 grid
                 w-full
-                max-w-md
+                max-w-[22rem]
                 grid-cols-1
-                gap-3
+                gap-2.5
+                min-[375px]:gap-3
                 sm:mt-8
+                sm:max-w-md
                 sm:grid-cols-2
                 lg:mx-0
                 lg:max-w-2xl
@@ -1541,16 +1559,17 @@ export default function ShaderHero() {
                 className="
                   group
                   flex
-                  min-h-12
+                  min-h-11
                   w-full
+                  touch-manipulation
                   items-center
                   justify-center
                   gap-2
                   rounded-xl
                   bg-emerald-500
-                  px-5
+                  px-4
                   font-mono
-                  text-sm
+                  text-xs
                   font-semibold
                   text-black
                   shadow-[0_10px_35px_rgba(16,185,129,0.15)]
@@ -1564,6 +1583,9 @@ export default function ShaderHero() {
                   focus-visible:ring-emerald-500
                   focus-visible:ring-offset-2
                   focus-visible:ring-offset-background
+                  sm:min-h-12
+                  sm:px-5
+                  sm:text-sm
                   xl:px-6
                   dark:focus-visible:ring-emerald-400
                 "
@@ -1571,7 +1593,7 @@ export default function ShaderHero() {
                 Explore my work
 
                 <ArrowRight
-                  size={17}
+                  size={16}
                   weight="bold"
                   className="
                     transition-transform
@@ -1588,8 +1610,9 @@ export default function ShaderHero() {
                 className="
                   group
                   flex
-                  min-h-12
+                  min-h-11
                   w-full
+                  touch-manipulation
                   items-center
                   justify-center
                   gap-2
@@ -1597,9 +1620,9 @@ export default function ShaderHero() {
                   border
                   border-border/80
                   bg-background/60
-                  px-5
+                  px-4
                   font-mono
-                  text-sm
+                  text-xs
                   font-medium
                   backdrop-blur-md
                   transition
@@ -1612,6 +1635,9 @@ export default function ShaderHero() {
                   focus-visible:ring-emerald-500
                   focus-visible:ring-offset-2
                   focus-visible:ring-offset-background
+                  sm:min-h-12
+                  sm:px-5
+                  sm:text-sm
                   xl:px-6
                   dark:hover:border-emerald-400/40
                   dark:focus-visible:ring-emerald-400
@@ -1638,8 +1664,9 @@ export default function ShaderHero() {
                 className="
                   group
                   flex
-                  min-h-12
+                  min-h-11
                   w-full
+                  touch-manipulation
                   items-center
                   justify-center
                   gap-2
@@ -1647,9 +1674,9 @@ export default function ShaderHero() {
                   border
                   border-emerald-600/30
                   bg-emerald-500/[0.04]
-                  px-5
+                  px-4
                   font-mono
-                  text-sm
+                  text-xs
                   font-medium
                   text-emerald-700
                   backdrop-blur-md
@@ -1665,6 +1692,9 @@ export default function ShaderHero() {
                   focus-visible:ring-offset-2
                   focus-visible:ring-offset-background
                   sm:col-span-2
+                  sm:min-h-12
+                  sm:px-5
+                  sm:text-sm
                   xl:col-span-1
                   xl:px-6
                   dark:border-emerald-500/30
@@ -1677,7 +1707,7 @@ export default function ShaderHero() {
                 Download Resume
 
                 <DownloadSimple
-                  size={17}
+                  size={16}
                   weight="bold"
                   className="
                     transition-transform
@@ -1694,12 +1724,14 @@ export default function ShaderHero() {
 
             <div
               className="
-                mt-6
+                mt-5
                 flex
                 flex-wrap
                 items-center
                 justify-center
-                gap-2.5
+                gap-2
+                sm:mt-6
+                sm:gap-2.5
                 lg:justify-start
               "
             >
@@ -1731,6 +1763,7 @@ export default function ShaderHero() {
                       flex
                       h-9
                       w-9
+                      touch-manipulation
                       items-center
                       justify-center
                       rounded-lg
@@ -1755,7 +1788,7 @@ export default function ShaderHero() {
                     "
                   >
                     <Icon
-                      size={18}
+                      size={17}
                       weight="regular"
                       aria-hidden="true"
                     />
@@ -1774,10 +1807,11 @@ export default function ShaderHero() {
               order-1
               mx-auto
               w-full
-              max-w-[15rem]
+              max-w-[11.5rem]
               min-w-0
               animate-[heroPortrait_0.8s_ease-out_0.1s_both]
-              sm:max-w-[18rem]
+              min-[375px]:max-w-[13rem]
+              sm:max-w-[17rem]
               md:max-w-[21rem]
               lg:order-2
               lg:max-w-[24rem]
@@ -1792,10 +1826,12 @@ export default function ShaderHero() {
                 aria-hidden="true"
                 className="
                   absolute
-                  inset-4
+                  inset-3
                   rounded-full
                   bg-emerald-500/10
-                  blur-[60px]
+                  blur-[45px]
+                  min-[375px]:inset-5
+                  min-[375px]:blur-[55px]
                   sm:inset-8
                   sm:blur-[75px]
                   dark:bg-emerald-400/10
@@ -1807,17 +1843,19 @@ export default function ShaderHero() {
               <div
                 className="
                   relative
-                  rounded-[1.75rem]
+                  rounded-[1.4rem]
                   border
                   border-emerald-600/20
                   bg-background/50
-                  p-1.5
-                  shadow-[0_25px_80px_rgba(0,0,0,0.12)]
+                  p-1
+                  shadow-[0_20px_60px_rgba(0,0,0,0.12)]
                   backdrop-blur-[2px]
                   transition-transform
                   duration-500
                   hover:-translate-y-2
                   hover:scale-[1.015]
+                  min-[375px]:rounded-[1.6rem]
+                  min-[375px]:p-1.5
                   sm:rounded-[2rem]
                   sm:p-2
                   dark:border-emerald-400/20
@@ -1830,8 +1868,9 @@ export default function ShaderHero() {
                     relative
                     aspect-[4/5]
                     overflow-hidden
-                    rounded-[1.4rem]
-                    bg-muted
+                    rounded-[1.1rem]
+                    bg-muted sm:py-5
+                    min-[375px]:rounded-[1.3rem]
                     sm:rounded-[1.5rem]
                   "
                 >
@@ -1842,8 +1881,9 @@ export default function ShaderHero() {
                     priority
                     quality={75}
                     sizes="
-                      (max-width: 639px) 240px,
-                      (max-width: 767px) 288px,
+                      (max-width: 374px) 184px,
+                      (max-width: 639px) 208px,
+                      (max-width: 767px) 272px,
                       (max-width: 1023px) 336px,
                       (max-width: 1279px) 384px,
                       432px
@@ -1852,7 +1892,7 @@ export default function ShaderHero() {
                       object-cover
                       object-center
                       transition-transform
-                      duration-700
+                      duration-700 
                       hover:scale-105
                     "
                   />
@@ -1879,36 +1919,41 @@ export default function ShaderHero() {
                       absolute
                       inset-x-0
                       bottom-0
-                      p-3.5
+                      p-2.5
                       text-left
+                      min-[375px]:p-3.5
                       sm:p-5
                     "
                   >
                     <div
                       className="
-                        mb-2
+                        mb-1.5
                         inline-flex
                         items-center
-                        gap-1.5
+                        gap-1
                         rounded-full
                         border
                         border-white/10
                         bg-black/40
-                        px-2
+                        px-1.5
                         py-1
-                        text-[7px]
+                        text-[6px]
                         font-medium
                         uppercase
-                        tracking-[0.15em]
+                        tracking-[0.12em]
                         text-white/80
                         backdrop-blur-md
+                        min-[375px]:gap-1.5
+                        min-[375px]:px-2
+                        min-[375px]:text-[7px]
+                        sm:mb-2
                         sm:gap-2
                         sm:px-2.5
                         sm:py-1.5
                         sm:text-[9px]
                       "
                     >
-                      <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-400" />
+                      <span className="h-1 w-1 animate-pulse rounded-full bg-emerald-400 min-[375px]:h-1.5 min-[375px]:w-1.5" />
 
                       Frontend × AI
                     </div>
@@ -1916,10 +1961,11 @@ export default function ShaderHero() {
                     <h2
                       className="
                         font-mono
-                        text-base
+                        text-sm
                         font-bold
                         tracking-tight
                         text-white
+                        min-[375px]:text-base
                         sm:text-xl
                       "
                     >
@@ -1929,8 +1975,9 @@ export default function ShaderHero() {
                     <p
                       className="
                         mt-0.5
-                        text-[9px]
+                        text-[8px]
                         text-white/60
+                        min-[375px]:text-[9px]
                         sm:mt-1
                         sm:text-xs
                       "
@@ -1941,31 +1988,35 @@ export default function ShaderHero() {
                 </div>
               </div>
 
-              {/* =================================================
-                  AVAILABLE BADGE
-              ================================================== */}
+              {/* Available badge */}
 
               <div
                 className="
                   absolute
-                  right-0
-                  top-4
+                  -right-1
+                  top-2
                   z-20
                   flex
                   items-center
-                  gap-1.5
+                  gap-1
                   rounded-full
                   border
                   border-emerald-500/20
                   bg-background/90
-                  px-2.5
-                  py-1.5
-                  text-[7px]
+                  px-2
+                  py-1
+                  text-[6px]
                   font-semibold
                   tracking-wide
                   shadow-xl
                   backdrop-blur-md
                   animate-[badgeIn_0.6s_ease-out_0.5s_both]
+                  min-[375px]:right-0
+                  min-[375px]:top-3
+                  min-[375px]:gap-1.5
+                  min-[375px]:px-2.5
+                  min-[375px]:py-1.5
+                  min-[375px]:text-[7px]
                   sm:-right-2
                   sm:top-6
                   sm:gap-2
@@ -1984,14 +2035,12 @@ export default function ShaderHero() {
                 AVAILABLE
               </div>
 
-              {/* =================================================
-                  AI BADGE
-              ================================================== */}
+              {/* AI badge */}
 
               <div
                 className="
                   absolute
-                  bottom-6
+                  bottom-4
                   left-0
                   z-20
                   hidden
@@ -2081,12 +2130,12 @@ export default function ShaderHero() {
             @keyframes heroPortrait {
               from {
                 opacity: 0;
-                transform: translateX(30px);
+                transform: translateY(18px);
               }
 
               to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
               }
             }
 
@@ -2139,6 +2188,18 @@ export default function ShaderHero() {
               to {
                 opacity: 1;
                 transform: translateX(0);
+              }
+            }
+
+            @media (max-width: 374px) {
+              .hero-mobile-tight {
+                letter-spacing: -0.065em;
+              }
+            }
+
+            @media (hover: none) {
+              .group:hover {
+                transform: none;
               }
             }
 
