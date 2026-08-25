@@ -22,7 +22,7 @@ const experiences = [
   {
     period: "2026 — Present",
     role: "Frontend AI Engineer",
-    company: "Independent / AI Projects",
+    company: "FlyRank AI / AI Projects",
     description:
       "Building AI-focused web applications and experimenting with intelligent agents, LLM-powered workflows, AI SDKs, and modern frontend architecture.",
     technologies: [
@@ -44,11 +44,14 @@ const experiences = [
       "Led a development team in building EasyStay, a short-term rental platform. Coordinated the team’s development workflow, contributed to frontend architecture and implementation, and helped guide the project from planning through feature development.",
     technologies: [
       "Next.js",
-      "TypeScript",
+      "NetAuth",
+      "React",
       "Tailwind CSS",
       "shadcn/ui",
-      "Prisma",
-      "Supabase",
+      "Stripe",
+      "JWT",
+      "Expressjs",
+      "MongoDB (Mongoose ORM)",
     ],
     current: false,
     type: "leadership",
@@ -60,11 +63,15 @@ const experiences = [
     description:
       "Developing responsive and production-ready web applications using React, Next.js, TypeScript, Tailwind CSS, and modern component systems.",
     technologies: [
+       "Next.js",
+      "NetAuth",
       "React",
-      "Next.js",
-      "TypeScript",
       "Tailwind CSS",
       "shadcn/ui",
+      "Stripe",
+      "JWT",
+      "Expressjs",
+      "MongoDB (Mongoose ORM)",
     ],
     current: false,
     type: "frontend",
