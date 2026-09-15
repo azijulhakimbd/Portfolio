@@ -7,6 +7,7 @@ import ExperienceSection from "@/components/home/ExperienceSection";
 import ProjectsSection from "@/components/home/ProjectSection";
 import ContactSection from "@/components/home/ContactSection";
 import ShaderHero from "@/components/home/ShaderHero";
+import VolunteerMappingSection from "@/components/home/VolunteerMappingSection";
 
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
      <ExperienceSection />
      <ProjectsSection />
      <CertificationsSection />
+     <VolunteerMappingSection />
      <ContactSection />
     </main>
   );
