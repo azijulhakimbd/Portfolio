@@ -20,7 +20,26 @@ import {
 
 const experiences = [
   {
-    period: "2026 — Present",
+    period: "September 2026 — Present",
+    role: "Fullstack Developer",
+    company: "Code Alpha",
+    description:
+      "Developing responsive and production-ready web applications using React, Next.js, TypeScript, Tailwind CSS, and modern component systems.",
+    technologies: [
+      "Next.js",
+      "NetAuth",
+      "React",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Stripe",
+      "JWT",
+      "Expressjs",
+      "MongoDB (Mongoose ORM)",
+    ],
+    current: true,
+    type: "fullstack",
+  },{
+    period: "July 2026 — September 2026",
     role: "Frontend AI Engineer",
     company: "FlyRank AI / AI Projects",
     description:
@@ -33,7 +52,7 @@ const experiences = [
       "AI Agents",
       "RAG",
     ],
-    current: true,
+    current: false,
     type: "ai",
   },
   {
