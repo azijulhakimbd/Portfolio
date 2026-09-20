@@ -23,7 +23,7 @@ export const blogPosts: BlogPost[] = [
     category: "AI Engineering",
     date: "September 18, 2026",
     readTime: "6 min read",
-    image: "/images/blog/ai-frontend.jpg",
+    image: "/images/blog/AI.jpg",
     tags: ["AI", "Next.js", "React"],
     featured: true,
 
@@ -60,7 +60,7 @@ export const blogPosts: BlogPost[] = [
     category: "AI Fluency",
     date: "September 15, 2026",
     readTime: "5 min read",
-    image: "/images/blog/flyrank-ai.jpg",
+    image: "/images/blog/flyrank.png",
     tags: ["FlyRank", "AI", "Learning"],
 
     content: [
@@ -96,7 +96,7 @@ export const blogPosts: BlogPost[] = [
     category: "AI Tools",
     date: "September 10, 2026",
     readTime: "7 min read",
-    image: "/images/blog/claude.jpg",
+    image: "/images/blog/Claude.webp",
     tags: ["Claude", "AI", "Development"],
 
     content: [
@@ -132,7 +132,7 @@ export const blogPosts: BlogPost[] = [
     category: "Frontend AI",
     date: "September 5, 2026",
     readTime: "8 min read",
-    image: "/images/blog/nextjs-ai.jpg",
+    image: "/images/blog/nextjs.jpeg",
     tags: ["Next.js", "AI SDK", "TypeScript"],
 
     content: [
@@ -168,7 +168,7 @@ export const blogPosts: BlogPost[] = [
     category: "Career",
     date: "August 30, 2026",
     readTime: "5 min read",
-    image: "/images/blog/frontend-ai.jpg",
+    image: "/images/blog/women-face.webp",
     tags: ["Career", "Frontend", "AI"],
 
     content: [
@@ -202,7 +202,7 @@ export const blogPosts: BlogPost[] = [
     category: "Portfolio",
     date: "August 25, 2026",
     readTime: "4 min read",
-    image: "/images/blog/portfolio.jpg",
+    image: "/images/blog/portfolio.png",
     tags: ["Portfolio", "Next.js", "Design"],
 
     content: [
