@@ -7,7 +7,11 @@ import {
   MagnifyingGlass,
   Warning,
 } from "@phosphor-icons/react/dist/ssr";
-
+export const metadata = {
+  title: "Not Found | Md. Azijul Hakim",
+  description:
+    "Articles, experiments, and notes about AI engineering, frontend development, Next.js, Claude, and modern web development.",
+};
 export default function NotFound() {
   return (
     <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-6">
