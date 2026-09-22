@@ -29,8 +29,8 @@ type Project = {
 
 const projects: Record<string, Project> = {
   /* =====================================================
-   NALITABARI UPAZILA INFORMATION PORTAL
-===================================================== */
+     NALITABARI UPAZILA INFORMATION PORTAL
+  ===================================================== */
 
   nalitabari: {
     slug: "nalitabari-upazila-information-portal",
@@ -93,9 +93,9 @@ const projects: Record<string, Project> = {
       "https://i.postimg.cc/pTKmhNK3/Directory.png",
       "https://i.postimg.cc/rm5D06S2/Emergency-Contact-Page.png",
       "https://i.postimg.cc/0Q7zMgp9/Health-Page.png",
-
     ],
   },
+
   /* =====================================================
      EASY STAY
   ===================================================== */
@@ -202,9 +202,11 @@ const projects: Record<string, Project> = {
 
     liveUrl: "https://petsera.netlify.app/",
 
-    githubUrl: "https://github.com/azijulhakimbd/Petsera-Client-Side",
+    githubUrl:
+      "https://github.com/azijulhakimbd/Petsera-Client-Side",
 
-    serverUrl: "https://github.com/azijulhakimbd/Petsera-Server-Side",
+    serverUrl:
+      "https://github.com/azijulhakimbd/Petsera-Server-Side",
 
     images: [
       "https://i.postimg.cc/GtMWnNR9/Pets-era.jpg",
@@ -262,9 +264,11 @@ const projects: Record<string, Project> = {
 
     liveUrl: "https://ma-restaurant.netlify.app/",
 
-    githubUrl: "https://github.com/azijulhakimbd/MA-Restaurant-Client",
+    githubUrl:
+      "https://github.com/azijulhakimbd/MA-Restaurant-Client",
 
-    serverUrl: "https://github.com/azijulhakimbd/MA-Restaurant-Server",
+    serverUrl:
+      "https://github.com/azijulhakimbd/MA-Restaurant-Server",
 
     images: [
       "https://i.postimg.cc/1XWRBX8J/MA-Banner.jpg",
@@ -323,9 +327,11 @@ const projects: Record<string, Project> = {
 
     liveUrl: "https://b11-a10-papiya.netlify.app/",
 
-    githubUrl: "https://github.com/azijulhakimbd/HobbyHub-Client",
+    githubUrl:
+      "https://github.com/azijulhakimbd/HobbyHub-Client",
 
-    serverUrl: "https://github.com/azijulhakimbd/HobbyHub-Server",
+    serverUrl:
+      "https://github.com/azijulhakimbd/HobbyHub-Server",
 
     images: [
       "https://i.postimg.cc/yxwZ8zkz/hobbyhub-03.png",
@@ -336,12 +342,22 @@ const projects: Record<string, Project> = {
 };
 
 /* =========================================================
+   GET PROJECT BY URL SLUG
+========================================================= */
+
+function getProjectBySlug(slug: string): Project | undefined {
+  return Object.values(projects).find(
+    (project) => project.slug === slug
+  );
+}
+
+/* =========================================================
    STATIC PARAMS
 ========================================================= */
 
 export function generateStaticParams() {
-  return Object.keys(projects).map((slug) => ({
-    slug,
+  return Object.values(projects).map((project) => ({
+    slug: project.slug,
   }));
 }
 
@@ -370,7 +386,7 @@ export async function generateMetadata({
 }: ProjectPageProps): Promise<Metadata> {
   const { slug } = await params;
 
-  const project = projects[slug];
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     return {
@@ -397,6 +413,7 @@ export async function generateMetadata({
       title: project.title,
       description: project.description,
       type: "article",
+
       images: [
         {
           url: project.images[0],
@@ -420,10 +437,12 @@ export async function generateMetadata({
    PROJECT DETAILS PAGE
 ========================================================= */
 
-export default async function ProjectDetailsPage({ params }: ProjectPageProps) {
+export default async function ProjectDetailsPage({
+  params,
+}: ProjectPageProps) {
   const { slug } = await params;
 
-  const project = projects[slug];
+  const project = getProjectBySlug(slug);
 
   if (!project) {
     notFound();
