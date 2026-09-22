@@ -29,6 +29,74 @@ type Project = {
 
 const projects: Record<string, Project> = {
   /* =====================================================
+   NALITABARI UPAZILA INFORMATION PORTAL
+===================================================== */
+
+  nalitabari: {
+    slug: "nalitabari-upazila-information-portal",
+
+    title: "Nalitabari Upazila Information Portal",
+
+    description:
+      "A modern digital information platform for Nalitabari Upazila, designed to make local information and essential public services easier to discover. The platform organizes healthcare, education, government services, emergency contacts, businesses, important places, news, and public notices in a responsive and user-friendly interface.",
+
+    technologies: [
+      "Next.js 16",
+      "TypeScript",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "MongoDB",
+      "Mongoose",
+      "Next.js App Router",
+      "Google News RSS",
+      "Resend",
+    ],
+
+    category: "Full-Stack Civic Information Platform",
+
+    overview:
+      "Nalitabari Upazila Information Portal is a full-stack civic information platform built to centralize useful local information for residents and visitors of Nalitabari. The platform provides categorized directories for healthcare, education, government offices, businesses, emergency services, important places, news, and notices. It uses Next.js App Router with TypeScript and MongoDB to deliver a scalable and responsive experience.",
+
+    features: [
+      "Local Information Directory: Browse organized information about important services and organizations in Nalitabari",
+      "Healthcare Directory: Find doctors, hospitals, clinics, pharmacies, and other healthcare services",
+      "Education Directory: Explore schools, colleges, and educational institutions",
+      "Government Services: Access information about government offices and public services",
+      "Emergency Services: Quickly find important emergency contacts and essential services",
+      "Business Directory: Discover local businesses and service providers",
+      "Important Places: Explore notable locations and places around Nalitabari",
+      "News & Notices: Display local news and important public announcements",
+      "Google News RSS Integration: Fetch relevant news related to Nalitabari and Sherpur",
+      "Bilingual Interface: Support for Bengali and English content",
+      "Responsive Design: Optimized experience across mobile, tablet, and desktop devices",
+      "Dark & Light Mode: Theme switching for a comfortable browsing experience",
+      "Dynamic MongoDB Data: Store and retrieve directory information dynamically",
+      "Contact System: Allow visitors to communicate through the portal",
+    ],
+
+    challenges:
+      "Designing a scalable information architecture for multiple categories of local services, managing dynamic MongoDB data, implementing a bilingual interface, integrating external news through RSS, and maintaining a responsive user experience across a large number of directory pages were key challenges. Another focus was keeping the interface simple enough for users to quickly find essential local information.",
+
+    improvements:
+      "Future improvements could include an admin dashboard for managing all portal content, user-submitted information with moderation, advanced location-based search and Google Maps integration, real-time emergency alerts, automated news categorization, improved SEO for local searches, Progressive Web App support, and AI-powered search and recommendations for local services.",
+
+    liveUrl: "https://hello-nalitabari.vercel.app/",
+
+    githubUrl:
+      "https://github.com/azijulhakimbd/Hello-Nalitabari",
+
+    images: [
+      "https://i.postimg.cc/PqgL5fv8/Home-Page.png",
+      "https://i.postimg.cc/DzJJh40L/Features.png",
+      "https://i.postimg.cc/vmJ1Z8xr/Latest-Neews.png",
+      "https://i.postimg.cc/GpWBm3TV/About-Page.png",
+      "https://i.postimg.cc/pTKmhNK3/Directory.png",
+      "https://i.postimg.cc/rm5D06S2/Emergency-Contact-Page.png",
+      "https://i.postimg.cc/0Q7zMgp9/Health-Page.png",
+
+    ],
+  },
+  /* =====================================================
      EASY STAY
   ===================================================== */
 
@@ -134,11 +202,9 @@ const projects: Record<string, Project> = {
 
     liveUrl: "https://petsera.netlify.app/",
 
-    githubUrl:
-      "https://github.com/azijulhakimbd/Petsera-Client-Side",
+    githubUrl: "https://github.com/azijulhakimbd/Petsera-Client-Side",
 
-    serverUrl:
-      "https://github.com/azijulhakimbd/Petsera-Server-Side",
+    serverUrl: "https://github.com/azijulhakimbd/Petsera-Server-Side",
 
     images: [
       "https://i.postimg.cc/GtMWnNR9/Pets-era.jpg",
@@ -196,11 +262,9 @@ const projects: Record<string, Project> = {
 
     liveUrl: "https://ma-restaurant.netlify.app/",
 
-    githubUrl:
-      "https://github.com/azijulhakimbd/MA-Restaurant-Client",
+    githubUrl: "https://github.com/azijulhakimbd/MA-Restaurant-Client",
 
-    serverUrl:
-      "https://github.com/azijulhakimbd/MA-Restaurant-Server",
+    serverUrl: "https://github.com/azijulhakimbd/MA-Restaurant-Server",
 
     images: [
       "https://i.postimg.cc/1XWRBX8J/MA-Banner.jpg",
@@ -259,11 +323,9 @@ const projects: Record<string, Project> = {
 
     liveUrl: "https://b11-a10-papiya.netlify.app/",
 
-    githubUrl:
-      "https://github.com/azijulhakimbd/HobbyHub-Client",
+    githubUrl: "https://github.com/azijulhakimbd/HobbyHub-Client",
 
-    serverUrl:
-      "https://github.com/azijulhakimbd/HobbyHub-Server",
+    serverUrl: "https://github.com/azijulhakimbd/HobbyHub-Server",
 
     images: [
       "https://i.postimg.cc/yxwZ8zkz/hobbyhub-03.png",
@@ -358,9 +420,7 @@ export async function generateMetadata({
    PROJECT DETAILS PAGE
 ========================================================= */
 
-export default async function ProjectDetailsPage({
-  params,
-}: ProjectPageProps) {
+export default async function ProjectDetailsPage({ params }: ProjectPageProps) {
   const { slug } = await params;
 
   const project = projects[slug];
