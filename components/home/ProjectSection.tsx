@@ -3,11 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  ArrowUpRight,
-  ExternalLink,
-  Sparkles,
-} from "lucide-react";
+import { ArrowUpRight, ExternalLink, Sparkles } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
 
 import {
@@ -80,6 +76,28 @@ type Project = {
 
 const projects: Project[] = [
   {
+    slug: "nalitabari-upazila-information-portal",
+    title: "Nalitabari Upazila Information Portal",
+    description:
+      "A full-stack civic information platform designed to make local information easier to discover and access. The portal organizes healthcare, education, government services, businesses, emergency contacts, important places, news, and public notices with a responsive bilingual interface.",
+    technologies: [
+      "Next.js 16",
+      "TypeScript",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "MongoDB",
+      "Mongoose",
+      "App Router",
+      "Google News RSS",
+      "Resend",
+    ],
+    github:
+      "https://github.com/azijulhakimbd/Hello-Nalitabari",
+    live: "https://hello-nalitabari.vercel.app/",
+    category: "Full-Stack / Civic Tech",
+    image: "https://i.postimg.cc/PqgL5fv8/Home-Page.png",
+  },
+  {
     slug: "easystay",
     title: "EasyStay — Short-Term Rental Marketplace",
     description:
@@ -95,13 +113,10 @@ const projects: Project[] = [
       "Stripe",
       "Shadcn UI",
     ],
-    github:
-      "https://github.com/azijulhakimbd/Easy-Stay",
-    live:
-      "https://easy-stay-liart.vercel.app/",
+    github: "https://github.com/azijulhakimbd/Easy-Stay",
+    live: "https://easy-stay-liart.vercel.app/",
     category: "Full-Stack Application",
-    image:
-      "https://i.postimg.cc/BQ4SXZF7/Easy-Stay-Hero.png",
+    image: "https://i.postimg.cc/BQ4SXZF7/Easy-Stay-Hero.png",
   },
 
   {
@@ -119,15 +134,11 @@ const projects: Project[] = [
       "Stripe",
       "Node",
     ],
-    github:
-      "https://github.com/azijulhakimbd/Petsera-Client-Side",
-    server:
-      "https://github.com/azijulhakimbd/Petsera-Server-Side",
-    live:
-      "https://petsera.netlify.app/",
+    github: "https://github.com/azijulhakimbd/Petsera-Client-Side",
+    server: "https://github.com/azijulhakimbd/Petsera-Server-Side",
+    live: "https://petsera.netlify.app/",
     category: "MERN Application",
-    image:
-      "https://i.postimg.cc/GtMWnNR9/Pets-era.jpg",
+    image: "https://i.postimg.cc/GtMWnNR9/Pets-era.jpg",
   },
 
   {
@@ -146,15 +157,11 @@ const projects: Project[] = [
       "Express JS",
       "Node",
     ],
-    github:
-      "https://github.com/azijulhakimbd/MA-Restaurant-Client",
-    server:
-      "https://github.com/azijulhakimbd/MA-Restaurant-Server",
-    live:
-      "https://ma-restaurant.netlify.app/",
+    github: "https://github.com/azijulhakimbd/MA-Restaurant-Client",
+    server: "https://github.com/azijulhakimbd/MA-Restaurant-Server",
+    live: "https://ma-restaurant.netlify.app/",
     category: "Web Application",
-    image:
-      "https://i.postimg.cc/1XWRBX8J/MA-Banner.jpg",
+    image: "https://i.postimg.cc/1XWRBX8J/MA-Banner.jpg",
   },
 
   {
@@ -173,15 +180,11 @@ const projects: Project[] = [
       "JWT",
       "Node",
     ],
-    github:
-      "https://github.com/azijulhakimbd/HobbyHub-Client",
-    server:
-      "https://github.com/azijulhakimbd/HobbyHub-Server",
-    live:
-      "https://b11-a10-papiya.netlify.app/",
+    github: "https://github.com/azijulhakimbd/HobbyHub-Client",
+    server: "https://github.com/azijulhakimbd/HobbyHub-Server",
+    live: "https://b11-a10-papiya.netlify.app/",
     category: "Community Platform",
-    image:
-      "https://i.postimg.cc/yxwZ8zkz/hobbyhub-03.png",
+    image: "https://i.postimg.cc/yxwZ8zkz/hobbyhub-03.png",
   },
 ];
 
@@ -189,27 +192,17 @@ const projects: Project[] = [
    TECHNOLOGY ICON
 ========================================================= */
 
-function TechnologyIcon({
-  technology,
-}: {
-  technology: string;
-}) {
+function TechnologyIcon({ technology }: { technology: string }) {
   const Icon = technologyIcons[technology];
 
   if (!Icon) {
     return (
-      <Sparkles
-        aria-hidden="true"
-        className="size-3.5 shrink-0 text-primary"
-      />
+      <Sparkles aria-hidden="true" className="size-3.5 shrink-0 text-primary" />
     );
   }
 
   return (
-    <Icon
-      aria-hidden="true"
-      className="size-3.5 shrink-0 text-foreground"
-    />
+    <Icon aria-hidden="true" className="size-3.5 shrink-0 text-foreground" />
   );
 }
 
@@ -217,13 +210,7 @@ function TechnologyIcon({
    PROJECT CARD
 ========================================================= */
 
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: Project;
-  index: number;
-}) {
+function ProjectCard({ project, index }: { project: Project; index: number }) {
   return (
     <motion.article
       variants={cardVariants}
@@ -412,10 +399,7 @@ function ProjectCard({
                 sm:px-3
               "
             >
-              <ExternalLink
-                aria-hidden="true"
-                className="size-4"
-              />
+              <ExternalLink aria-hidden="true" className="size-4" />
 
               <span>Live</span>
             </a>
@@ -436,10 +420,7 @@ function ProjectCard({
                 sm:px-3
               "
             >
-              <FaGithub
-                aria-hidden="true"
-                className="size-4"
-              />
+              <FaGithub aria-hidden="true" className="size-4" />
 
               <span>GitHub</span>
             </a>
@@ -461,10 +442,7 @@ function ProjectCard({
                   sm:px-3
                 "
               >
-                <FaGithub
-                  aria-hidden="true"
-                  className="size-4"
-                />
+                <FaGithub aria-hidden="true" className="size-4" />
 
                 <span>Server</span>
               </a>
@@ -628,11 +606,7 @@ export default function ProjectsSection() {
           "
         >
           {projects.map((project, index) => (
-            <ProjectCard
-              key={project.slug}
-              project={project}
-              index={index}
-            />
+            <ProjectCard key={project.slug} project={project} index={index} />
           ))}
         </motion.section>
 
@@ -695,8 +669,7 @@ export default function ProjectsSection() {
               "
             >
               I&apos;m continuously building and experimenting with modern web
-              technologies, scalable applications, and useful digital
-              products.
+              technologies, scalable applications, and useful digital products.
             </p>
 
             <Link
