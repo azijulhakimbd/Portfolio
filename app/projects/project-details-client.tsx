@@ -67,38 +67,54 @@ type TechnologyIcon = IconType | LucideIcon;
 
 const technologyIcons: Record<string, TechnologyIcon> = {
   React: SiReact,
+
   "Next.js": SiNextdotjs,
+
   TypeScript: SiTypescript,
+
   "Tailwind CSS": SiTailwindcss,
+
   PostgreSQL: SiPostgresql,
 
   MongoDB: SiMongodb,
+
   "MongoDB(Mongoose ORM)": SiMongodb,
 
   "Express.js": SiExpress,
+
   "Express JS": SiExpress,
 
   "Node.js": SiNodedotjs,
+
   Node: SiNodedotjs,
 
   Firebase: SiFirebase,
+
   Stripe: SiStripe,
+
   JavaScript: SiJavascript,
 
-  /* AI / Other technologies */
+  /* AI */
   "AI SDK": Brain,
+
   AI: Brain,
+
   LLMs: Brain,
 
+  /* Other */
   "Next Auth": Sparkles,
+
   "Shadcn UI": Sparkles,
+
   "shadcn/ui": Sparkles,
+
   JWT: Sparkles,
+
   HTML: Sparkles,
 };
 
 /* =========================================================
-   ANIMATIONS
+   GENERAL ANIMATION
 ========================================================= */
 
 const itemVariants: Variants = {
@@ -113,6 +129,69 @@ const itemVariants: Variants = {
 
     transition: {
       duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+/* =========================================================
+   FEATURE ANIMATION
+========================================================= */
+
+const featureContainerVariants: Variants = {
+  hidden: {},
+
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const featureItemVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+
+  visible: {
+    opacity: 1,
+    y: 0,
+
+    transition: {
+      duration: 0.45,
+      ease: "easeOut",
+    },
+  },
+};
+
+/* =========================================================
+   SCREENSHOT ANIMATION
+========================================================= */
+
+const screenshotContainerVariants: Variants = {
+  hidden: {},
+
+  visible: {
+    transition: {
+      staggerChildren: 0.08,
+    },
+  },
+};
+
+const screenshotItemVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+
+  visible: {
+    opacity: 1,
+    y: 0,
+
+    transition: {
+      duration: 0.5,
       ease: "easeOut",
     },
   },
@@ -219,6 +298,7 @@ export default function ProjectDetailsClient({
             ease: "easeOut",
           }}
           className="mt-8 flex flex-wrap gap-2 sm:mt-10 sm:gap-3"
+          aria-label="Technology stack"
         >
           {project.technologies.map((technology) => {
             const Icon = technologyIcons[technology];
@@ -255,7 +335,8 @@ export default function ProjectDetailsClient({
           }}
           className="mt-8 flex flex-wrap gap-2 sm:mt-10 sm:gap-3"
         >
-          {/* Live */}
+          {/* Live Demo */}
+
           {project.liveUrl && project.liveUrl !== "#" ? (
             <a
               href={project.liveUrl}
@@ -277,6 +358,7 @@ export default function ProjectDetailsClient({
           )}
 
           {/* GitHub */}
+
           {project.githubUrl && project.githubUrl !== "#" ? (
             <a
               href={project.githubUrl}
@@ -298,6 +380,7 @@ export default function ProjectDetailsClient({
           )}
 
           {/* Server */}
+
           {project.serverUrl && project.serverUrl !== "#" && (
             <a
               href={project.serverUrl}
@@ -319,11 +402,11 @@ export default function ProjectDetailsClient({
 
         {project.images?.length > 0 && (
           <motion.section
-            initial={{ opacity: 0, y: 30 }}
+            initial="hidden"
             whileInView="visible"
             viewport={{
               once: true,
-              amount: 0.15,
+              amount: 0.05,
             }}
             variants={itemVariants}
             className="mt-16 sm:mt-20"
@@ -338,28 +421,23 @@ export default function ProjectDetailsClient({
               </h2>
             </div>
 
-            <div className="grid gap-4 sm:gap-5 md:grid-cols-2">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{
+                once: true,
+                amount: 0.05,
+              }}
+              variants={screenshotContainerVariants}
+              className="grid gap-4 sm:gap-5 md:grid-cols-2"
+            >
               {project.images.map((image, index) => (
                 <motion.a
-                  key={image}
+                  key={`${image}-${index}`}
                   href={image}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{
-                    opacity: 0,
-                    y: 20,
-                  }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  viewport={{
-                    once: true,
-                  }}
-                  transition={{
-                    duration: 0.5,
-                    delay: index * 0.06,
-                  }}
+                  variants={screenshotItemVariants}
                   whileHover={{
                     y: -5,
                   }}
@@ -371,14 +449,13 @@ export default function ProjectDetailsClient({
                     src={image}
                     alt={`${project.title} screenshot ${index + 1}`}
                     className={`w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] ${
-                      index === 0
-                        ? "max-h-[650px]"
-                        : "max-h-[500px]"
+                      index === 0 ? "max-h-[650px]" : "max-h-[500px]"
                     }`}
                     loading={index === 0 ? "eager" : "lazy"}
                   />
 
                   {/* Hover overlay */}
+
                   <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/20">
                     <div className="scale-90 rounded-full bg-background/90 p-3 opacity-0 shadow-lg transition-all duration-300 group-hover:scale-100 group-hover:opacity-100">
                       <ExternalLink className="size-5" />
@@ -386,16 +463,20 @@ export default function ProjectDetailsClient({
                   </div>
 
                   {/* Image number */}
+
                   <span className="absolute bottom-3 left-3 rounded-full border border-white/20 bg-black/40 px-2.5 py-1 text-[11px] text-white backdrop-blur-md sm:bottom-4 sm:left-4 sm:px-3 sm:text-xs">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </motion.a>
               ))}
-            </div>
+            </motion.div>
           </motion.section>
         )}
 
-        {/* Divider */}
+        {/* =====================================================
+            DIVIDER
+        ===================================================== */}
+
         <div className="my-16 h-px bg-border sm:my-20" />
 
         {/* =====================================================
@@ -404,15 +485,13 @@ export default function ProjectDetailsClient({
 
         <div className="grid gap-12 lg:grid-cols-[1.4fr_0.8fr] lg:gap-16">
           {/* Overview */}
+
           <motion.section
-            initial={{
-              opacity: 0,
-              y: 30,
-            }}
+            initial="hidden"
             whileInView="visible"
             viewport={{
               once: true,
-              amount: 0.2,
+              amount: 0.1,
             }}
             variants={itemVariants}
           >
@@ -432,15 +511,13 @@ export default function ProjectDetailsClient({
           </motion.section>
 
           {/* Project Info */}
+
           <motion.aside
-            initial={{
-              opacity: 0,
-              x: 30,
-            }}
+            initial="hidden"
             whileInView="visible"
             viewport={{
               once: true,
-              amount: 0.2,
+              amount: 0.1,
             }}
             variants={itemVariants}
             className="h-fit rounded-2xl border bg-background/60 p-5 backdrop-blur-md sm:p-6"
@@ -488,14 +565,11 @@ export default function ProjectDetailsClient({
         ===================================================== */}
 
         <motion.section
-          initial={{
-            opacity: 0,
-            y: 30,
-          }}
+          initial="hidden"
           whileInView="visible"
           viewport={{
             once: true,
-            amount: 0.2,
+            amount: 0.05,
           }}
           variants={itemVariants}
           className="mt-20 sm:mt-24"
@@ -508,36 +582,35 @@ export default function ProjectDetailsClient({
             Key features
           </h2>
 
-          <div className="mt-8 grid gap-3 sm:mt-10 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Feature cards */}
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{
+              once: true,
+              amount: 0.05,
+            }}
+            variants={featureContainerVariants}
+            className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3"
+          >
             {project.features.map((feature, index) => (
               <motion.div
-                key={feature}
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                whileInView="visible"
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.06,
-                  ease: "easeOut",
-                }}
+                key={`${feature}-${index}`}
+                variants={featureItemVariants}
                 whileHover={{
                   y: -4,
                 }}
-                className="group rounded-2xl border bg-background/60 p-5 backdrop-blur-md transition-shadow hover:shadow-lg sm:p-6"
+                className="group rounded-2xl border bg-background/60 p-5 backdrop-blur-md transition-all duration-300 hover:border-primary/30 hover:shadow-lg sm:p-6"
               >
-                <CheckCircle2 className="size-6 text-primary transition-transform group-hover:scale-110" />
+                <CheckCircle2 className="size-6 text-primary transition-transform duration-300 group-hover:scale-110" />
 
                 <h3 className="mt-4 text-sm font-semibold leading-6 sm:mt-5">
                   {feature}
                 </h3>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.section>
 
         {/* =====================================================
@@ -546,14 +619,11 @@ export default function ProjectDetailsClient({
 
         {project.challenges && (
           <motion.section
-            initial={{
-              opacity: 0,
-              y: 30,
-            }}
+            initial="hidden"
             whileInView="visible"
             viewport={{
               once: true,
-              amount: 0.2,
+              amount: 0.1,
             }}
             variants={itemVariants}
             className="mt-20 sm:mt-24"
@@ -582,14 +652,11 @@ export default function ProjectDetailsClient({
 
         {project.improvements && (
           <motion.section
-            initial={{
-              opacity: 0,
-              y: 30,
-            }}
+            initial="hidden"
             whileInView="visible"
             viewport={{
               once: true,
-              amount: 0.2,
+              amount: 0.1,
             }}
             variants={itemVariants}
             className="mt-6 sm:mt-8"
@@ -635,6 +702,7 @@ export default function ProjectDetailsClient({
           className="relative mt-20 overflow-hidden rounded-3xl border bg-background/60 p-6 text-center backdrop-blur-md sm:mt-24 sm:p-12"
         >
           {/* Glow */}
+
           <div className="pointer-events-none absolute left-1/2 top-0 h-40 w-72 max-w-full -translate-x-1/2 rounded-full bg-primary/10 blur-3xl" />
 
           <div className="relative">
