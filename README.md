@@ -166,6 +166,13 @@ npm run start
 npm run lint
 ```
 
+## 📲 Progressive Web App
+
+The portfolio can be installed from supported browsers when served over HTTPS.
+Its web app manifest and icons are in `public/`, and its service worker caches
+static assets and serves an offline page when a navigation cannot reach the
+network. The service worker is registered only in production.
+
 ---
 
 ## 🎯 Career Focus
